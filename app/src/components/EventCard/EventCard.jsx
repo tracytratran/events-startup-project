@@ -1,20 +1,40 @@
+import styles from "./EventCard.module.css";
+
 export default function EventCard({ event }) {
+  const dateStr = event.date;
+  const formattedDate = new Date(dateStr)
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+    .replace(",", "");
+
   return (
-    <li key={event.id}>
-      <h2>{event.name}</h2>
-      <p>
-        {event.date} at {event.time}
-      </p>
-      <p>
-        {event.venue}, {event.city}
-      </p>
-      <p>{event.category}</p>
-      <p>{event.price === 0 ? "Free" : `€${event.price}`}</p>
-      <p>
-        {event.ticketsAvailable === 0
-          ? "Sold out"
-          : `${event.ticketsAvailable} tickets left`}
-      </p>
+    <li className={styles.card}>
+      <div className={styles.imageWrapper}>
+        <div className={styles.image}></div>
+        <span className={styles.category}>{event.category}</span>
+      </div>
+
+      <div className={styles.eventInfo}>
+        <span className={styles.date}>{formattedDate}</span>
+
+        <div>
+          <h2 className={styles.title}>{event.name}</h2>
+          <p className={styles.location}>
+            {event.venue}, {event.city}
+          </p>
+          <p className={styles.ticketInfo}>
+            <span>{event.price === 0 ? "Free" : `€${event.price}`}</span>
+            <span>
+              {event.ticketsAvailable === 0
+                ? "Sold out"
+                : `${event.ticketsAvailable} tickets left`}
+            </span>
+          </p>
+        </div>
+      </div>
     </li>
   );
 }
