@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "events", element: <EventList /> },
-      { path: "event", element: <EventDetail /> },
+      { path: "react-copenhaghen-conference-2026", element: <EventDetail /> },
     ],
   },
   { path: "/login", element: <Login /> },
