@@ -26,7 +26,7 @@ export default function EventCard({ event }) {
             {event.venue}, {event.city}
           </p>
           <p className={styles.ticketInfo}>
-            <span>{event.price === 0 ? "Free" : `€${event.price}`}</span>
+            <span>{event.price === 0 ? "Free" : `${event.price}kr.`}</span>
             <span>
               {event.ticketsAvailable === 0
                 ? "Sold out"
