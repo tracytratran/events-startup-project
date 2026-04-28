@@ -1,3 +1,4 @@
+import { useState } from "react";
 import events from "../../data/events.js";
 import styles from "./EventDetail.module.css";
 
@@ -6,6 +7,7 @@ import styles from "./EventDetail.module.css";
 // TODO: fetch the event from GET /events/:id instead of using mock data
 
 export default function EventDetail() {
+  const [isShowed, setIsShowed] = useState(false);
   const eventToDisplay = events[0];
 
   return (
@@ -20,53 +22,85 @@ export default function EventDetail() {
 
       <hr className={styles.divider} />
 
-      <p className={styles.sectionTitle}>Date and Time</p>
-      <div className={styles.dateTime}>
-        <div className={styles.dateTimeInfo}>
-          📆 <span>{eventToDisplay.date}</span>
+      <section>
+        <p className={styles.sectionTitle}>Date and Time</p>
+        <div className={styles.dateTime}>
+          <div className={styles.dateTimeInfo}>
+            📆 <span>{eventToDisplay.date}</span>
+          </div>
+          <div className={styles.dateTimeInfo}>
+            🕐 <span>{eventToDisplay.time}</span>
+          </div>
         </div>
-        <div className={styles.dateTimeInfo}>
-          🕐 <span>{eventToDisplay.time}</span>
+      </section>
+
+      <hr className={styles.divider} />
+
+      <section>
+        <p className={styles.sectionTitle}>Location</p>
+        <div className={styles.location}>
+          📍
+          <span>
+            {eventToDisplay.venue}, {eventToDisplay.city}
+          </span>
         </div>
-      </div>
+      </section>
 
-      <hr className={styles.divider} />
+      <button
+        className={`${styles.toggleBtn} ${isShowed ? styles.hidden : ""}`}
+        onClick={() => setIsShowed(!isShowed)}
+      >
+        Show more
+      </button>
 
-      <p className={styles.sectionTitle}>Location</p>
-      <div className={styles.location}>
-        📍
-        <span>
-          {eventToDisplay.venue}, {eventToDisplay.city}
-        </span>
-      </div>
+      {isShowed && (
+        <>
+          <hr className={styles.divider} />
 
-      <hr className={styles.divider} />
+          <section>
+            <p className={styles.sectionTitle}>Ticket Information</p>
+            <div className={styles.ticketInfo}>
+              🎟
+              <span>
+                <strong>
+                  {eventToDisplay.price === 0
+                    ? "Free"
+                    : `${eventToDisplay.price}kr.`}
+                </strong>{" "}
+                / ticket &nbsp;·&nbsp;{" "}
+                {eventToDisplay.ticketsAvailable === 0
+                  ? "Sold out"
+                  : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 ? "s" : ""} left`}
+              </span>
+            </div>
+          </section>
 
-      <p className={styles.sectionTitle}>Ticket Information</p>
-      <div className={styles.ticketInfo}>
-        🎟
-        <span>
-          <strong>
-            {eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price}kr.`}
-          </strong>{" "}
-          / ticket &nbsp;·&nbsp;{" "}
-          {eventToDisplay.ticketsAvailable === 0
-            ? "Sold out"
-            : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 ? "s" : ""} left`}
-        </span>
-      </div>
+          <hr className={styles.divider} />
 
-      <hr className={styles.divider} />
+          <section>
+            <p className={styles.sectionTitle}>Event Description</p>
+            <p className={styles.eventDescription}>
+              {eventToDisplay.description}
+            </p>
+          </section>
 
-      <p className={styles.sectionTitle}>Event Description</p>
-      <p className={styles.eventDescription}>{eventToDisplay.description}</p>
+          <hr className={styles.divider} />
 
-      <hr className={styles.divider} />
+          <section>
+            <p className={styles.sectionTitle}>Tags</p>
+            <div className={styles.tags}>
+              <span className={styles.tag}>{eventToDisplay.category}</span>
+            </div>
+          </section>
+        </>
+      )}
 
-      <p className={styles.sectionTitle}>Tags</p>
-      <div className={styles.tags}>
-        <span className={styles.tag}>{eventToDisplay.category}</span>
-      </div>
+      <button
+        className={`${styles.toggleBtn} ${isShowed ? "" : styles.hidden}`}
+        onClick={() => setIsShowed(!isShowed)}
+      >
+        Show less
+      </button>
     </div>
   );
 }
