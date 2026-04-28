@@ -14,50 +14,81 @@ const categoryFilters = events.map((event) => event.category);
 
 export default function EventList() {
   const [selector, setSelector] = useState("default");
+  const [checkedPrice, setCheckedPrice] = useState([]);
+  const [checkedCategory, setCheckedCategory] = useState([]);
 
-  function handleOnChange(e) {
+  function handleSortChange(e) {
     setSelector(e.target.value);
   }
 
-  function sortEvents() {
+  function sortEvents(filteredEvents) {
     if (selector === "default") {
-      return events;
+      return filteredEvents;
     }
 
     if (selector === "soonest") {
-      return [...events].sort((a, b) => a.date.localeCompare(b.date));
+      return [...filteredEvents].sort((a, b) => a.date.localeCompare(b.date));
     }
 
     if (selector === "latest") {
-      return [...events].sort((a, b) => b.date.localeCompare(a.date));
+      return [...filteredEvents].sort((a, b) => b.date.localeCompare(a.date));
     }
 
     if (selector === "lowest") {
-      return [...events].sort((a, b) => a.price - b.price);
+      return [...filteredEvents].sort((a, b) => a.price - b.price);
     }
 
     if (selector === "highest") {
-      return [...events].sort((a, b) => b.price - a.price);
+      return [...filteredEvents].sort((a, b) => b.price - a.price);
     }
+  }
+
+  function handleFilterChange(e, setCheckedFilter) {
+    const { name, checked } = e.target;
+    if (checked) {
+      setCheckedFilter((previous) => [...previous, name]);
+    } else
+      setCheckedFilter((previous) => previous.filter((item) => item !== name));
+  }
+
+  function filterEvents() {
+    return events.filter((event) => {
+      let priceType;
+      event.price === 0 ? (priceType = "Free") : (priceType = "Paid");
+      const matchPrice =
+        checkedPrice.length === 0 || checkedPrice.includes(priceType);
+      const matchCategory =
+        checkedCategory.length === 0 ||
+        checkedCategory.includes(event.category);
+      return matchPrice && matchCategory;
+    });
   }
 
   return (
     <div className={styles.wrapper}>
       {/* Filter */}
       <SideBar>
-        <FilterOption filterTitle="Price" filterOptions={priceFilters} />
-        <FilterOption filterTitle="Category" filterOptions={categoryFilters} />
+        <FilterOption
+          filterTitle="Price"
+          filterOptions={priceFilters}
+          onChange={(e) => handleFilterChange(e, setCheckedPrice)}
+        />
+        <FilterOption
+          filterTitle="Category"
+          filterOptions={categoryFilters}
+          onChange={(e) => handleFilterChange(e, setCheckedCategory)}
+        />
       </SideBar>
 
       {/* Main content */}
       <div className={styles.main}>
         {/* Sort bar */}
-        <SortBar onChange={handleOnChange} />
+        <SortBar onChange={handleSortChange} />
 
         {/* Event list */}
         {events.length > 0 ? (
           <ul className={styles.list}>
-            {sortEvents().map((event) => (
+            {sortEvents(filterEvents()).map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </ul>

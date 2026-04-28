@@ -1,6 +1,6 @@
 import styles from "./FilterOption.module.css";
 
-export default function FilterOption({ filterTitle, filterOptions }) {
+export default function FilterOption({ filterTitle, filterOptions, onChange }) {
   return (
     <>
       <div className={styles.filterSection}>
@@ -8,7 +8,7 @@ export default function FilterOption({ filterTitle, filterOptions }) {
         <div className={styles.filterOptions}>
           {filterOptions.map((label) => (
             <label key={label} className={styles.filterOption}>
-              <input type="checkbox" />
+              <input type="checkbox" name={label} onChange={onChange} />
               <span className={styles.filterLabel}>{label}</span>
             </label>
           ))}
