@@ -14,7 +14,7 @@ export default function EventDetail() {
     <div className={styles.wrapper}>
       <img
         className={styles.image}
-        src="../public/images/example-image-event.jpeg"
+        src="../public/images/mock-event-img.jpg"
         alt={eventToDisplay.name}
       />
 
