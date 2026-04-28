@@ -10,12 +10,13 @@ import styles from "./EventList.module.css";
 // TODO: replace the mock data import with a fetch call to GET /events
 
 const priceFilters = ["Free", "Paid"];
-const categoryFilters = events.map((event) => event.category);
+const categoryFilters = [...new Set(events.map((event) => event.category))];
 
 export default function EventList() {
   const [selector, setSelector] = useState("default");
   const [checkedPrice, setCheckedPrice] = useState([]);
   const [checkedCategory, setCheckedCategory] = useState([]);
+  const displayedEvents = sortEvents(filterEvents());
 
   function handleSortChange(e) {
     setSelector(e.target.value);
@@ -86,16 +87,24 @@ export default function EventList() {
         <SortBar onChange={handleSortChange} />
 
         {/* Event list */}
-        {events.length > 0 ? (
-          <ul className={styles.list}>
-            {sortEvents(filterEvents()).map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </ul>
-        ) : (
+        {/* When there are currently no events */}
+        {events.length === 0 && (
           <h2 className={styles.noEvent}>
             Stay tune! More events are on the way...
           </h2>
+        )}
+
+        {/* When no event(s) matched after filtering and/or sorting */}
+        {events.length > 0 && displayedEvents.length === 0 && (
+          <h2 className={styles.noEvent}>No events matched!</h2>
+        )}
+
+        {displayedEvents.length > 0 && (
+          <ul className={styles.list}>
+            {displayedEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </ul>
         )}
       </div>
     </div>
