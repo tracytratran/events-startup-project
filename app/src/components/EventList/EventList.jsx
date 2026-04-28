@@ -9,9 +9,13 @@ import styles from "./EventList.module.css";
 export default function EventList() {
   return (
     <ul className={styles.list}>
-      {events.map((event) => (
-        <EventCard key={event.id} event={event} />
-      ))}
+      {events.length > 0 &&
+        events.map((event) => <EventCard key={event.id} event={event} />)}
+      {events.length === 0 && (
+        <h2 className={styles.noEvent}>
+          Stay tune! More events are on the way...
+        </h2>
+      )}
     </ul>
   );
 }
