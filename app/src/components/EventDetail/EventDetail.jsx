@@ -46,9 +46,13 @@ export default function EventDetail() {
       <div className={styles.ticketInfo}>
         🎟
         <span>
-          <strong>{eventToDisplay.price} kr.</strong> / ticket &nbsp;·&nbsp;{" "}
-          {eventToDisplay.ticketsAvailable}{" "}
-          {eventToDisplay.ticketsAvailable > 1 ? "tickets" : "ticket"} available
+          <strong>
+            {eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price}kr.`}
+          </strong>{" "}
+          / ticket &nbsp;·&nbsp;{" "}
+          {eventToDisplay.ticketsAvailable === 0
+            ? "Sold out"
+            : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 ? "s" : ""} left`}
         </span>
       </div>
 
