@@ -1,3 +1,4 @@
+import { useState } from "react";
 import events from "../../data/events.js";
 import EventCard from "../EventCard/EventCard.jsx";
 import FilterOption from "../FilterOption/FilterOption.jsx";
@@ -12,6 +13,34 @@ const priceFilters = ["Free", "Paid"];
 const categoryFilters = events.map((event) => event.category);
 
 export default function EventList() {
+  const [selector, setSelector] = useState("default");
+
+  function handleOnChange(e) {
+    setSelector(e.target.value);
+  }
+
+  function sortEvents() {
+    if (selector === "default") {
+      return events;
+    }
+
+    if (selector === "soonest") {
+      return [...events].sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    if (selector === "latest") {
+      return [...events].sort((a, b) => b.date.localeCompare(a.date));
+    }
+
+    if (selector === "lowest") {
+      return [...events].sort((a, b) => a.price - b.price);
+    }
+
+    if (selector === "highest") {
+      return [...events].sort((a, b) => b.price - a.price);
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       {/* Filter */}
@@ -23,12 +52,12 @@ export default function EventList() {
       {/* Main content */}
       <div className={styles.main}>
         {/* Sort bar */}
-        <SortBar />
+        <SortBar onChange={handleOnChange} />
 
         {/* Event list */}
         {events.length > 0 ? (
           <ul className={styles.list}>
-            {events.map((event) => (
+            {sortEvents().map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </ul>
