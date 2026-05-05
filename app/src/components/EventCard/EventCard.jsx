@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./EventCard.module.css";
 
 export default function EventCard({ event }) {
@@ -11,30 +12,32 @@ export default function EventCard({ event }) {
     .replace(",", "");
 
   return (
-    <li className={styles.card}>
-      <div className={styles.imageWrapper}>
-        <div className={styles.image}></div>
-        <span className={styles.category}>{event.category}</span>
-      </div>
-
-      <div className={styles.eventInfo}>
-        <span className={styles.date}>{formattedDate}</span>
-
-        <div>
-          <h2 className={styles.title}>{event.name}</h2>
-          <p className={styles.location}>
-            {event.venue}, {event.city}
-          </p>
-          <p className={styles.ticketInfo}>
-            <span>{event.price === 0 ? "Free" : `${event.price}kr.`}</span>
-            <span>
-              {event.ticketsAvailable === 0
-                ? "Sold out"
-                : `${event.ticketsAvailable} tickets left`}
-            </span>
-          </p>
+    <Link to={`/events/${event.id}`} className={styles.link}>
+      <li className={styles.card}>
+        <div className={styles.imageWrapper}>
+          <div className={styles.image}></div>
+          <span className={styles.category}>{event.category}</span>
         </div>
-      </div>
-    </li>
+
+        <div className={styles.eventInfo}>
+          <span className={styles.date}>{formattedDate}</span>
+
+          <div>
+            <h2 className={styles.title}>{event.name}</h2>
+            <p className={styles.location}>
+              {event.venue}, {event.city}
+            </p>
+            <p className={styles.ticketInfo}>
+              <span>{event.price === 0 ? "Free" : `${event.price}kr.`}</span>
+              <span>
+                {event.ticketsAvailable === 0
+                  ? "Sold out"
+                  : `${event.ticketsAvailable} tickets left`}
+              </span>
+            </p>
+          </div>
+        </div>
+      </li>
+    </Link>
   );
 }

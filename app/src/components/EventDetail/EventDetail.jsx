@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import events from "../../data/events.js";
 import styles from "./EventDetail.module.css";
+import useEventById from "../../hooks/useEventById.jsx";
 
 // TODO: display at least date, time, venue, city, and description for one event
 // TODO: use useParams() to get the event id from the URL
 // TODO: fetch the event from GET /events/:id instead of using mock data
 
 export default function EventDetail() {
+  const { id } = useParams();
+  const { event: eventToDisplay, loading, error } = useEventById(id);
   const [isShowed, setIsShowed] = useState(false);
-  const eventToDisplay = events[0];
+
+  if (!eventToDisplay) return null;
 
   return (
     <div className={styles.wrapper}>

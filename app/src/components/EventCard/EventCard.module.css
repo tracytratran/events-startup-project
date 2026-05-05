@@ -1,8 +1,13 @@
+.link {
+  text-decoration: none;
+}
+
 .card {
+  height: 22rem;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 1rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -11,7 +16,7 @@
 }
 
 .image {
-  height: 220px;
+  height: 12rem;
   background: #cfcfcf;
 }
 
@@ -29,7 +34,7 @@
 
 .eventInfo {
   display: grid;
-  grid-template-columns: 72px 1fr;
+  grid-template-columns: 4.5rem 1fr;
   gap: 1rem;
   padding: 1.25rem;
 }
@@ -38,7 +43,7 @@
   color: #3f3dbf;
   text-align: center;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.2;
   word-break: break-word;
 }
@@ -46,17 +51,14 @@
 .title {
   margin: 0 0 0.5rem;
   color: #1e2235;
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 .location {
   margin: 0 0 0.75rem;
   color: #666666;
-  font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.9rem;
 }
 
 .ticketInfo {
