@@ -5,14 +5,16 @@ import FilterOption from "../FilterOption/FilterOption.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
 import styles from "./EventList.module.css";
+import useEvents from "../../hooks/useEvents.jsx";
 
 // TODO: add a "Buy ticket" button to each event card
-// TODO: replace the mock data import with a fetch call to GET /events
 
 const priceFilters = ["Free", "Paid"];
 const categoryFilters = [...new Set(events.map((event) => event.category))];
 
 export default function EventList() {
+  const { events, loading, error } = useEvents();
+  // console.log(events);
   const [selector, setSelector] = useState("default");
   const [checkedPrice, setCheckedPrice] = useState([]);
   const [checkedCategory, setCheckedCategory] = useState([]);
