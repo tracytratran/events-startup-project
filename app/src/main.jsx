@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import Layout from "./components/Layout/Layout.jsx";
 import HomePage from "./components/HomePage/HomePage.jsx";
 import EventList from "./components/EventList/EventList.jsx";
@@ -12,6 +17,11 @@ import EventDetail from "./components/EventDetail/EventDetail.jsx";
 // Cart model: cart items are stored in localStorage via CartContext (no backend needed).
 // At checkout, the cart is POSTed to POST /api/orders and then cleared.
 // CartContext should follow the same pattern as AuthContext — see that file for reference.
+const ProtectedRoutes = () => {
+  const accessToken = localStorage.getItem("token");
+
+  return accessToken ? <Outlet /> : <Navigate to="/login" replace />;
+};
 
 const router = createBrowserRouter([
   {
@@ -25,6 +35,14 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  {
+    element: <ProtectedRoutes />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "events", element: <EventList /> },
+      { path: "events/:id", element: <EventDetail /> },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

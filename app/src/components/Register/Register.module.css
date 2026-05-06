@@ -55,3 +55,7 @@
 .registerBtn:active {
   transform: translateY(0);
 }
+
+.errorMessage {
+  color: #ff7070;
+}
