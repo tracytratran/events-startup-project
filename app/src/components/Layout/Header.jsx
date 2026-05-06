@@ -30,8 +30,10 @@ export default function Header() {
         <div className={styles.actions}>
           {user ? (
             <>
-              <span>{user.email}</span>
-              <button onClick={logout}>Sign out</button>
+              <span className={styles.user}>{user.email}</span>
+              <button onClick={logout} className={styles.signoutBtn}>
+                Sign out
+              </button>
             </>
           ) : (
             <>
