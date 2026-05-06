@@ -4,6 +4,6 @@
   min-height: 100vh;
 }
 
-.flexGrow1 {
+.mainContent {
   flex-grow: 1;
 }
