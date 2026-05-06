@@ -1,3 +1,4 @@
+import { useState } from "react";
 import EventCard from "../EventCard/EventCard.jsx";
 import FilterOption from "../FilterOption/FilterOption.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
@@ -8,7 +9,6 @@ import Pagination from "../Pagination/Pagination.jsx";
 import useEvents from "../../hooks/useEvents.jsx";
 import useEventFilters from "../../hooks/useEventFilters.jsx";
 import styles from "./EventList.module.css";
-import { useState } from "react";
 
 // TODO: add a "Buy ticket" button to each event card
 
@@ -25,7 +25,7 @@ export default function EventList() {
     handleSortChange,
   } = useEventFilters(events);
   const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage] = useState(4);
+  const eventsPerPage = 4;
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = displayedEvents.slice(
@@ -42,8 +42,14 @@ export default function EventList() {
       <SearchSection>
         <SearchBar
           search={search}
-          onSearch={(e) => setSearch(e.target.value)}
-          onClearSearch={() => setSearch("")}
+          onSearch={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+          }}
+          onClearSearch={() => {
+            setSearch("");
+            setCurrentPage(1);
+          }}
         />
       </SearchSection>
 
@@ -53,19 +59,30 @@ export default function EventList() {
           <FilterOption
             filterTitle="Price"
             filterOptions={priceFilters}
-            onChange={handlePriceChange}
+            onChange={(e) => {
+              handlePriceChange(e);
+              setCurrentPage(1);
+            }}
           />
           <FilterOption
             filterTitle="Category"
             filterOptions={categoryFilters}
-            onChange={handleCategoryChange}
+            onChange={(e) => {
+              handleCategoryChange(e);
+              setCurrentPage(1);
+            }}
           />
         </SideBar>
 
         {/* Main content */}
         <div className={styles.main}>
           {/* Sort bar */}
-          <SortBar onChange={handleSortChange} />
+          <SortBar
+            onChange={(e) => {
+              handleSortChange(e);
+              setCurrentPage(1);
+            }}
+          />
 
           {/* Event list */}
           {/* When there are currently no events */}
