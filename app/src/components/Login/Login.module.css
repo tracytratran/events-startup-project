@@ -1,4 +1,4 @@
-.login {
+.formWrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,42 +35,6 @@
   margin: 0.25rem 0;
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.formField {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.formField label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.formField input {
-  padding: 0.7rem 1rem;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.5rem;
-  font: inherit;
-  font-size: 0.95rem;
-  color: #fff;
-  outline: none;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
-}
-
-.formField input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.formField input:focus {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .loginBtn {

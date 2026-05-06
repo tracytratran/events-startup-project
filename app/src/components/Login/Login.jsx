@@ -9,7 +9,7 @@ import styles from "./Login.module.css";
 
 export default function Login() {
   return (
-    <div className={styles.login}>
+    <div className={styles.formWrapper}>
       <form className={styles.loginForm}>
         <h1 className={styles.formTitle}>Login</h1>
         <p className={styles.subtitle}>Welcome back to HackYourFutureEvent</p>
