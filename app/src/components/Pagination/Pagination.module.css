@@ -22,12 +22,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: transparent;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   color: #2d3270;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .pageNumber:hover,
@@ -41,11 +43,6 @@
   border-color: #f5c518;
   color: #1a1f5e;
   font-weight: 600;
-}
-
-.arrowBtn {
-  background: transparent;
-  cursor: pointer;
 }
 
 .arrowBtn:disabled {

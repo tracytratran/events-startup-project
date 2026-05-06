@@ -13,16 +13,18 @@ export default function Pagination({
     pageNumbers.push(i);
   }
 
-  const paginate = (pageNumber, e) => {
-    e.preventDefault();
+  const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  if (totalPages <= 0) return null;
 
   return (
     <nav className={styles.pagination}>
       <button
+        type="button"
         className={styles.arrowBtn}
-        onClick={(e) => paginate(currentPage - 1, e)}
+        onClick={() => paginate(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="Previous page"
       >
@@ -46,21 +48,22 @@ export default function Pagination({
       <ul className={styles.paginationList}>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <a
-              onClick={(e) => paginate(number, e)}
-              href="!#"
+            <button
+              type="button"
+              onClick={() => paginate(number)}
               className={`${styles.pageNumber} ${currentPage === number ? styles.active : ""}`}
               aria-current={currentPage === number ? "page" : undefined}
             >
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
 
       <button
+        type="button"
         className={styles.arrowBtn}
-        onClick={(e) => paginate(currentPage + 1, e)}
+        onClick={() => paginate(currentPage + 1)}
         disabled={currentPage === totalPages}
         aria-label="Next page"
       >
