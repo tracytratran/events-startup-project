@@ -4,9 +4,11 @@ import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
 import SearchSection from "../Search/SearchSection.jsx";
 import SearchBar from "../Search/SearchBar.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
 import useEvents from "../../hooks/useEvents.jsx";
 import useEventFilters from "../../hooks/useEventFilters.jsx";
 import styles from "./EventList.module.css";
+import { useState } from "react";
 
 // TODO: add a "Buy ticket" button to each event card
 
@@ -22,6 +24,14 @@ export default function EventList() {
     handleCategoryChange,
     handleSortChange,
   } = useEventFilters(events);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(4);
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = displayedEvents.slice(
+    indexOfFirstEvent,
+    indexOfLastEvent,
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -66,19 +76,26 @@ export default function EventList() {
           )}
 
           {/* When no event(s) matched after filtering and/or sorting */}
-          {events.length > 0 && displayedEvents.length === 0 && (
+          {events.length > 0 && currentEvents.length === 0 && (
             <h2 className={styles.noEvent}>No events matched!</h2>
           )}
 
-          {displayedEvents.length > 0 && (
+          {currentEvents.length > 0 && (
             <ul className={styles.list}>
-              {displayedEvents.map((event) => (
+              {currentEvents.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
             </ul>
           )}
         </div>
       </div>
+
+      <Pagination
+        eventsPerPage={eventsPerPage}
+        totalEvents={displayedEvents.length}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 }
