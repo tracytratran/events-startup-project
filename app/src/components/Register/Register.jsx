@@ -29,9 +29,7 @@ export default function Register() {
       navigate("/");
     } catch (error) {
       console.error(error);
-      setError(
-        "This email has already existed! Please use another email to register!",
-      );
+      setError(error.message);
     }
   }
 

@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     });
 
     if (!response.ok) {
-      throw new Error("Invalid email or password");
+      throw new Error("Registration failed. Please try again!");
     }
 
     const { accessToken, user } = await response.json();
@@ -48,14 +48,13 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("user");
     setToken(undefined);
     setUser(undefined);
-    // TODO add the missing logout logic here — clear the token and user from state as well
   }
 
   function persist(accessToken, user) {
     localStorage.setItem("token", accessToken);
     localStorage.setItem("user", JSON.stringify(user));
-    setToken(accessToken);
-    setUser(user);
+    setToken(null);
+    setUser(null);
   }
 
   return (
