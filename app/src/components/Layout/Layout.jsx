@@ -9,7 +9,7 @@ export default function Layout() {
     <div className={styles.wrapper}>
       <Header />
 
-      <main className={styles.flexGrow1}>
+      <main className={styles.mainContent}>
         <Outlet />
       </main>
 
