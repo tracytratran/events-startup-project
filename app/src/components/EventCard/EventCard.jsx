@@ -10,7 +10,8 @@ export default function EventCard({ event }) {
     })
     .replace(",", "");
 
-  const price = event.price === 0 ? "Free" : `€${event.price}`;
+  const price = event.price === 0 ? "Free" : `${event.price} kr.`;
+
   const ticketsAvailable =
     event.ticketsAvailable === 0
       ? "Sold out"

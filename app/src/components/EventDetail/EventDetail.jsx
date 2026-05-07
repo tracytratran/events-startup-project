@@ -8,6 +8,14 @@ import styles from "./EventDetail.module.css";
 export default function EventDetail() {
   const eventToDisplay = events[0];
 
+  const price =
+    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
+
+  const ticketsAvailable =
+    eventToDisplay.ticketsAvailable === 0
+      ? "Sold out"
+      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
+
   return (
     <div className={styles.wrapper}>
       <img
@@ -46,12 +54,11 @@ export default function EventDetail() {
       <div className={styles.ticketInfo}>
         🎟
         <span>
-          <strong>{eventToDisplay.price} kr.</strong> / ticket
+          <strong>{price}</strong> / ticket
           <span className={styles.separator} aria-hidden="true">
             ·
           </span>
-          {eventToDisplay.ticketsAvailable} ticket{" "}
-          {eventToDisplay.ticketsAvailable > 1 && "s"} available
+          {ticketsAvailable}
         </span>
       </div>
 
