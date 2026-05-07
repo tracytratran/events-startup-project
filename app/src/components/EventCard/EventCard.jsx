@@ -10,6 +10,11 @@ export default function EventCard({ event }) {
     })
     .replace(",", "");
 
+  const ticketsAvailable =
+    event.ticketsAvailable === 0
+      ? "Sold out"
+      : `${event.ticketsAvailable} ticket${event.ticketsAvailable > 1 && "s"} left`;
+
   return (
     <li className={styles.card}>
       <div className={styles.imageWrapper}>
@@ -27,11 +32,7 @@ export default function EventCard({ event }) {
           </p>
           <p className={styles.ticketInfo}>
             <span>{event.price === 0 ? "Free" : `€${event.price}`}</span>
-            <span>
-              {event.ticketsAvailable === 0
-                ? "Sold out"
-                : `${event.ticketsAvailable} tickets left`}
-            </span>
+            <span>{ticketsAvailable}</span>
           </p>
         </div>
       </div>
