@@ -1,0 +1,69 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.image {
+  height: 12rem;
+  background: #cfcfcf;
+}
+
+.category {
+  padding: 0.75rem;
+  display: inline-block;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: #f4d63f;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #1e2235;
+}
+
+.eventInfo {
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+}
+
+.date {
+  color: #3f3dbf;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  word-break: break-word;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  color: #1e2235;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.location {
+  margin: 0 0 0.75rem;
+  color: #666666;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticketInfo {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #444444;
+}
