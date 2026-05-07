@@ -10,6 +10,7 @@ export default function EventCard({ event }) {
     })
     .replace(",", "");
 
+  const price = event.price === 0 ? "Free" : `€${event.price}`;
   const ticketsAvailable =
     event.ticketsAvailable === 0
       ? "Sold out"
@@ -31,7 +32,7 @@ export default function EventCard({ event }) {
             {event.venue}, {event.city}
           </p>
           <p className={styles.ticketInfo}>
-            <span>{event.price === 0 ? "Free" : `€${event.price}`}</span>
+            <span>{price}</span>
             <span>{ticketsAvailable}</span>
           </p>
         </div>
