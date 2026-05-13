@@ -1,9 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [eventTickets, setEventTickets] = useState([]);
+  const [eventTickets, setEventTickets] = useState(() => {
+    const stored = localStorage.getItem("carts");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("carts", JSON.stringify(eventTickets));
+  }, [eventTickets]);
+
   const ticketsCount = eventTickets.reduce(
     (total, ticket) => total + ticket.quantity,
     0,
