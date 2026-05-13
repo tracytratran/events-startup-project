@@ -75,3 +75,9 @@
   font-size: 0.9rem;
   color: #666666;
 }
+
+.error {
+  margin-top: 1rem;
+  font: inherit !important;
+  border-radius: 1rem;
+}

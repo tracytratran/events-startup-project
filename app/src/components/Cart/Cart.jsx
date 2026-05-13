@@ -1,16 +1,31 @@
+import Alert from "@mui/material/Alert";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 
 export default function Cart() {
+  const { user } = useAuth();
   const { eventTickets, ticketsCount, removeItemFromCart, updateItemQuantity } =
     useCart();
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   const total = eventTickets.reduce(
     (sum, ticket) => sum + ticket.price * ticket.quantity,
     0,
   );
+
+  function handleCheckout() {
+    if (!user) {
+      setError("You must be logged in to checkout!");
+      return;
+    }
+    navigate("/checkout");
+  }
 
   if (ticketsCount === 0) {
     return (
@@ -44,7 +59,15 @@ export default function Cart() {
 
       <CartSummary />
 
-      <button className={styles.checkoutBtn}>Proceed to checkout</button>
+      <button onClick={handleCheckout} className={styles.checkoutBtn}>
+        Proceed to checkout
+      </button>
+
+      {error && (
+        <Alert severity="error" className={styles.error}>
+          {error}
+        </Alert>
+      )}
     </div>
   );
 }
