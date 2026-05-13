@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
-import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
+import styles from "./Cart.module.css";
 
 export default function Cart() {
   const { user } = useAuth();

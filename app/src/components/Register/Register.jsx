@@ -1,19 +1,10 @@
-// TODO: build a register form with relevant fields
-// TODO: call register(email, password) from useAuth() on submit
-// TODO: show a clear error message if registration fails
-// TODO: redirect to the event list on success
-
-// TODO: build a login form with relevant fields
-// TODO: call login(email, password) from useAuth() on submit
-// TODO: show a clear error message if login fails
-// TODO: redirect to the event list on success
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
 import { EmailInput, PasswordInput } from "../Input/Input";
 import Footer from "../Layout/Footer";
 import styles from "./Register.module.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const { register } = useAuth();

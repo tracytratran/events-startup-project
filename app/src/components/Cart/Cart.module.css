@@ -78,6 +78,6 @@
 
 .error {
   margin-top: 1rem;
-  font: inherit !important;
   border-radius: 1rem;
+  font: inherit !important;
 }

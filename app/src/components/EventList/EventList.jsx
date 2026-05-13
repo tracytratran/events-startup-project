@@ -1,16 +1,14 @@
 import { useState } from "react";
+import useEventFilters from "../../hooks/useEventFilters.jsx";
+import useEvents from "../../hooks/useEvents.jsx";
 import EventCard from "../EventCard/EventCard.jsx";
 import FilterOption from "../FilterOption/FilterOption.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
+import SearchBar from "../Search/SearchBar.jsx";
+import SearchSection from "../Search/SearchSection.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
-import SearchSection from "../Search/SearchSection.jsx";
-import SearchBar from "../Search/SearchBar.jsx";
-import Pagination from "../Pagination/Pagination.jsx";
-import useEvents from "../../hooks/useEvents.jsx";
-import useEventFilters from "../../hooks/useEventFilters.jsx";
 import styles from "./EventList.module.css";
-
-// TODO: add a "Buy ticket" button to each event card
 
 export default function EventList() {
   const { events, loading, error } = useEvents();
