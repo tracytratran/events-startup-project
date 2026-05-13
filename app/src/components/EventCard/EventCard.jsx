@@ -21,13 +21,16 @@ export default function EventCard({ event }) {
           <div className={styles.image}></div>
 
           <span className={styles.category}>{event.category}</span>
-          <AddShoppingCartIcon
-            className={styles.addToCart}
+          <button
             onClick={(e) => {
               e.preventDefault();
               addItemToCart(event.name, event.price);
             }}
-          />
+            disabled={event.ticketsAvailable === 0}
+            className={styles.addToCartBtn}
+          >
+            <AddShoppingCartIcon />
+          </button>
         </div>
 
         <div className={styles.eventInfo}>

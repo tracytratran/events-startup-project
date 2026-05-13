@@ -32,15 +32,27 @@
   font-weight: 600;
 }
 
-.addToCart {
-  padding: 0.75rem;
+.addToCartBtn {
+  padding: 0.5rem;
   display: inline-block;
   position: absolute;
   right: 1rem;
   top: 1rem;
   background: #f4d63f;
+  border: none;
   border-radius: 0.5rem;
   color: #1e2235;
+  cursor: pointer;
+}
+
+.addToCartBtn:not(:disabled):hover {
+  background-color: #e0b010;
+}
+
+.addToCartBtn:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
 .eventInfo {
