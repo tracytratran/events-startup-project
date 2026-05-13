@@ -35,20 +35,18 @@ export default function Header() {
         </div>
 
         <div className={styles.actions}>
+          <IconButton onClick={() => navigate("/my-cart")}>
+            <Badge badgeContent={ticketsCount} color="primary">
+              <ShoppingCartIcon fontSize="medium" className={styles.cartIcon} />
+            </Badge>
+          </IconButton>
           {user ? (
             <>
               <AccountCircleIcon
+                onClick={() => navigate("/my-account")}
                 fontSize="medium"
                 className={styles.userIcon}
               />
-              <IconButton onClick={() => navigate("/my-cart")}>
-                <Badge badgeContent={ticketsCount} color="primary">
-                  <ShoppingCartIcon
-                    fontSize="medium"
-                    className={styles.cartIcon}
-                  />
-                </Badge>
-              </IconButton>
               <button onClick={logout} className={styles.signoutBtn}>
                 Sign out
               </button>
