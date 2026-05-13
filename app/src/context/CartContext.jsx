@@ -3,20 +3,23 @@ import { createContext, useContext, useState } from "react";
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [eventItems, setEventItems] = useState([]);
-  const cartCount = eventItems.length;
+  const [eventTickets, setEventTickets] = useState([]);
+  const ticketsCount = eventTickets.reduce(
+    (total, ticket) => total + ticket.quantity,
+    0,
+  );
 
   function addItemToCart(name, price) {
-    const existingItem = eventItems.find((item) => item.name === name);
+    const existingItem = eventTickets.find((item) => item.name === name);
     if (existingItem) {
       updateItemQuantity(name, existingItem.quantity + 1);
       return;
     }
-    setEventItems((prev) => [...prev, { name, price, quantity: 1 }]);
+    setEventTickets((prev) => [...prev, { name, price, quantity: 1 }]);
   }
 
   function removeItemFromCart(name) {
-    setEventItems((prev) => prev.filter((item) => item.name !== name));
+    setEventTickets((prev) => prev.filter((item) => item.name !== name));
   }
 
   function updateItemQuantity(name, quantity) {
@@ -25,7 +28,7 @@ export function CartProvider({ children }) {
       return;
     }
 
-    setEventItems((prev) =>
+    setEventTickets((prev) =>
       prev.map((item) => (item.name === name ? { ...item, quantity } : item)),
     );
   }
@@ -33,8 +36,8 @@ export function CartProvider({ children }) {
   return (
     <CartContext.Provider
       value={{
-        eventItems,
-        cartCount,
+        eventTickets,
+        ticketsCount,
         addItemToCart,
         removeItemFromCart,
         updateItemQuantity,
