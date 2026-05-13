@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import hyfLogo from "../../assets/hyf.svg";
 import { useAuth } from "../../context/AuthContext.jsx";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import hyfLogo from "../../assets/hyf.svg";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -30,14 +32,18 @@ export default function Header() {
         <div className={styles.actions}>
           {user ? (
             <>
-              <span className={styles.user}>{user.email}</span>
+              <AccountCircleIcon
+                fontSize="medium"
+                className={styles.userIcon}
+              />
+              <ShoppingCartIcon fontSize="medium" className={styles.cartIcon} />
               <button onClick={logout} className={styles.signoutBtn}>
                 Sign out
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className={styles.navLink}>
+              <Link to="/login" className={styles.loginBtn}>
                 Login
               </Link>
               <Link to="/register" className={styles.registerBtn}>
