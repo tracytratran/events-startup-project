@@ -53,8 +53,8 @@ export function AuthProvider({ children }) {
   function persist(accessToken, user) {
     localStorage.setItem("token", accessToken);
     localStorage.setItem("user", JSON.stringify(user));
-    setToken(null);
-    setUser(null);
+    setToken(accessToken);
+    setUser(user);
   }
 
   return (
