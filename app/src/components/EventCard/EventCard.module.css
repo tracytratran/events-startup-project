@@ -21,22 +21,33 @@
 }
 
 .category {
+  padding: 0.75rem;
   display: inline-block;
   position: absolute;
   left: 1rem;
   top: 1rem;
-  padding: 0.75rem;
   background: #f4d63f;
   border-radius: 0.5rem;
   color: #1e2235;
   font-weight: 600;
 }
 
+.addToCart {
+  padding: 0.75rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: #f4d63f;
+  border-radius: 0.5rem;
+  color: #1e2235;
+}
+
 .eventInfo {
+  padding: 1.25rem;
   display: grid;
   grid-template-columns: 4.5rem 1fr;
   gap: 1rem;
-  padding: 1.25rem;
 }
 
 .date {
@@ -62,10 +73,10 @@
 }
 
 .ticketInfo {
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: 0;
   color: #444444;
   font-size: 0.95rem;
 }

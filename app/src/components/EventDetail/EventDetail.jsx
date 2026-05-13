@@ -1,25 +1,36 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import events from "../../data/events.js";
-import styles from "./EventDetail.module.css";
+import { useCart } from "../../context/CartContext.jsx";
 import useEventById from "../../hooks/useEventById.jsx";
+import styles from "./EventDetail.module.css";
 
 export default function EventDetail() {
   const { id } = useParams();
   const { event: eventToDisplay, loading, error } = useEventById(id);
+  const { addItemToCart } = useCart();
   const [isShowed, setIsShowed] = useState(false);
 
   if (!eventToDisplay) return null;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
       <img
         className={styles.image}
         src="../public/images/mock-event-img.jpg"
         alt={eventToDisplay.name}
       />
 
-      <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+      <div className={styles.header}>
+        <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+        <button
+          onClick={() =>
+            addItemToCart(eventToDisplay.name, eventToDisplay.price)
+          }
+          className={styles.buyBtn}
+        >
+          Buy Ticket
+        </button>
+      </div>
 
       <hr className={styles.divider} />
 

@@ -2,7 +2,7 @@ body {
   font-size: 0.9rem;
 }
 
-.wrapper {
+.container {
   max-width: 50vw;
   margin: 0 auto;
   padding: 1.5rem 1rem 3.75rem;
@@ -17,11 +17,34 @@ body {
   object-fit: cover;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .eventTitle {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
+}
+
+.buyBtn {
+  padding: 0.625rem 1.25rem;
+  background-color: #ffd800;
+  border: none;
+  border-radius: 0.5rem;
+  color: #1a1a1a;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.buyBtn:hover {
+  background-color: #e0b010;
 }
 
 .divider {
@@ -95,6 +118,10 @@ body {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+}
+
+.toggleBtn:hover {
+  background-color: #e0b010;
 }
 
 .hidden {

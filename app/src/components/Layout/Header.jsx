@@ -1,12 +1,17 @@
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext.jsx";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import { Link, useNavigate } from "react-router-dom";
 import hyfLogo from "../../assets/hyf.svg";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useCart } from "../../context/CartContext.jsx";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const { user, logout } = useAuth();
+  const { ticketsCount } = useCart();
+  const navigate = useNavigate();
 
   return (
     <header className={styles.header}>
@@ -36,7 +41,14 @@ export default function Header() {
                 fontSize="medium"
                 className={styles.userIcon}
               />
-              <ShoppingCartIcon fontSize="medium" className={styles.cartIcon} />
+              <IconButton onClick={() => navigate("/my-cart")}>
+                <Badge badgeContent={ticketsCount} color="primary">
+                  <ShoppingCartIcon
+                    fontSize="medium"
+                    className={styles.cartIcon}
+                  />
+                </Badge>
+              </IconButton>
               <button onClick={logout} className={styles.signoutBtn}>
                 Sign out
               </button>

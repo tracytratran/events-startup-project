@@ -1,7 +1,10 @@
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import styles from "./EventCard.module.css";
 
 export default function EventCard({ event }) {
+  const { addItemToCart } = useCart();
   const dateStr = event.date;
   const formattedDate = new Date(dateStr)
     .toLocaleDateString("en-US", {
@@ -16,7 +19,15 @@ export default function EventCard({ event }) {
       <li className={styles.card}>
         <div className={styles.imageWrapper}>
           <div className={styles.image}></div>
+
           <span className={styles.category}>{event.category}</span>
+          <AddShoppingCartIcon
+            className={styles.addToCart}
+            onClick={(e) => {
+              e.preventDefault();
+              addItemToCart(event.name, event.price);
+            }}
+          />
         </div>
 
         <div className={styles.eventInfo}>
