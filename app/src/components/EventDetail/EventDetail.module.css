@@ -43,8 +43,14 @@ body {
   white-space: nowrap;
 }
 
-.buyBtn:hover {
+.buyBtn:not(:disabled):hover {
   background-color: #e0b010;
+}
+
+.buyBtn:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
 .divider {

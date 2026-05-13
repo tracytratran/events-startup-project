@@ -26,6 +26,7 @@ export default function EventDetail() {
           onClick={() =>
             addItemToCart(eventToDisplay.name, eventToDisplay.price)
           }
+          disabled={eventToDisplay.ticketsAvailable === 0}
           className={styles.buyBtn}
         >
           Buy Ticket
