@@ -10,6 +10,14 @@ export default function EventDetail() {
   const [isShowed, setIsShowed] = useState(false);
   const eventToDisplay = events[0];
 
+  const price =
+    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
+
+  const ticketsAvailable =
+    eventToDisplay.ticketsAvailable === 0
+      ? "Sold out"
+      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
+
   return (
     <div className={styles.wrapper}>
       <img
@@ -57,23 +65,17 @@ export default function EventDetail() {
         <>
           <hr className={styles.divider} />
 
-          <section>
-            <p className={styles.sectionTitle}>Ticket Information</p>
-            <div className={styles.ticketInfo}>
-              🎟
-              <span>
-                <strong>
-                  {eventToDisplay.price === 0
-                    ? "Free"
-                    : `${eventToDisplay.price}kr.`}
-                </strong>{" "}
-                / ticket &nbsp;·&nbsp;{" "}
-                {eventToDisplay.ticketsAvailable === 0
-                  ? "Sold out"
-                  : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 ? "s" : ""} left`}
+          <p className={styles.sectionTitle}>Ticket Information</p>
+          <div className={styles.ticketInfo}>
+            🎟
+            <span>
+              <strong>{price}</strong> / ticket
+              <span className={styles.separator} aria-hidden="true">
+                ·
               </span>
-            </div>
-          </section>
+              {ticketsAvailable}
+            </span>
+          </div>
 
           <hr className={styles.divider} />
 

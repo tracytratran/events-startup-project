@@ -25,15 +25,15 @@ body {
 }
 
 .divider {
+  margin: 1.5rem 0;
   border: none;
   border-top: 0.0625rem solid #e5e7eb;
-  margin: 1.5rem 0;
 }
 
 .sectionTitle {
+  margin: 0 0 0.625rem;
   font-size: 1rem;
   font-weight: 700;
-  margin: 0 0 0.625rem;
 }
 
 .dateTime {
@@ -63,6 +63,11 @@ body {
   color: #374151;
 }
 
+.separator {
+  margin: 0 0.25rem;
+  color: inherit;
+}
+
 .eventDescription {
   margin: 0;
   line-height: 1.75;
@@ -76,13 +81,13 @@ body {
 }
 
 .tag {
-  display: inline-block;
   padding: 0.25rem 0.875rem;
+  display: inline-block;
+  background: #fff;
   border: 0.0625rem solid #d1d5db;
   border-radius: 1.25rem;
   font-size: 0.8rem;
   color: #374151;
-  background: #fff;
 }
 
 .toggleBtn {
