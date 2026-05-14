@@ -1,10 +1,10 @@
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
+import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
 import events from "../../data/events.js";
 import styles from "./EventDetail.module.css";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import LocationPinIcon from "@mui/icons-material/LocationPin";
-import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 
 export default function EventDetail() {
   const [isShowed, setIsShowed] = useState(false);
