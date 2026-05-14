@@ -2,13 +2,13 @@ import styles from "./FilterOption.module.css";
 
 export default function FilterOption({ filterTitle, filterOptions, onChange }) {
   return (
-    <div className={styles.filterSection}>
-      <h3 className={styles.filterTitle}>{filterTitle}</h3>
-      <div className={styles.filterOptions}>
+    <div className={styles.filterBar}>
+      <h3 className={styles.title}>{filterTitle}</h3>
+      <div className={styles.options}>
         {filterOptions.map((label) => (
-          <label key={label} className={styles.filterOption}>
+          <label key={label} className={styles.option}>
             <input type="checkbox" name={label} onChange={onChange} />
-            <span className={styles.filterLabel}>{label}</span>
+            <span className={styles.label}>{label}</span>
           </label>
         ))}
       </div>
