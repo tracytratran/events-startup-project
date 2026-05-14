@@ -6,9 +6,6 @@ import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
 import styles from "./EventList.module.css";
 
-// TODO: add a "Buy ticket" button to each event card
-// TODO: replace the mock data import with a fetch call to GET /events
-
 const priceFilters = ["Free", "Paid"];
 const categoryFilters = [...new Set(events.map((event) => event.category))];
 
@@ -100,7 +97,7 @@ export default function EventList() {
         )}
 
         {displayedEvents.length > 0 && (
-          <ul className={styles.list}>
+          <ul className={styles.eventsGrid}>
             {displayedEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
