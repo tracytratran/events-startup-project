@@ -1,10 +1,10 @@
 import { useState } from "react";
 import events from "../../data/events.js";
 import styles from "./EventDetail.module.css";
-
-// TODO: display at least date, time, venue, city, and description for one event
-// TODO: use useParams() to get the event id from the URL
-// TODO: fetch the event from GET /events/:id instead of using mock data
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import LocationPinIcon from "@mui/icons-material/LocationPin";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 
 export default function EventDetail() {
   const [isShowed, setIsShowed] = useState(false);
@@ -34,10 +34,12 @@ export default function EventDetail() {
         <p className={styles.sectionTitle}>Date and Time</p>
         <div className={styles.dateTime}>
           <div className={styles.dateTimeInfo}>
-            📆 <span>{eventToDisplay.date}</span>
+            <CalendarMonthIcon className={styles.eventIcon} />
+            <span>{eventToDisplay.date}</span>
           </div>
           <div className={styles.dateTimeInfo}>
-            🕐 <span>{eventToDisplay.time}</span>
+            <AccessTimeIcon className={styles.eventIcon} />
+            <span>{eventToDisplay.time}</span>
           </div>
         </div>
       </section>
@@ -47,7 +49,7 @@ export default function EventDetail() {
       <section>
         <p className={styles.sectionTitle}>Location</p>
         <div className={styles.location}>
-          📍
+          <LocationPinIcon className={styles.eventIcon} />
           <span>
             {eventToDisplay.venue}, {eventToDisplay.city}
           </span>
@@ -67,7 +69,7 @@ export default function EventDetail() {
 
           <p className={styles.sectionTitle}>Ticket Information</p>
           <div className={styles.ticketInfo}>
-            🎟
+            <LocalActivityIcon className={styles.eventIcon} />
             <span>
               <strong>{price}</strong> / ticket
               <span className={styles.separator} aria-hidden="true">
@@ -81,9 +83,7 @@ export default function EventDetail() {
 
           <section>
             <p className={styles.sectionTitle}>Event Description</p>
-            <p className={styles.eventDescription}>
-              {eventToDisplay.description}
-            </p>
+            <p className={styles.description}>{eventToDisplay.description}</p>
           </section>
 
           <hr className={styles.divider} />
