@@ -9,7 +9,11 @@ export default function EventDetail() {
   const { event: eventToDisplay, loading, error } = useEventById(id);
   const [isShowed, setIsShowed] = useState(false);
 
-  if (!eventToDisplay) return null;
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+
+  if (error) return <p className={styles.error}>Error: {error}</p>;
+
+  if (!eventToDisplay) return <p className={styles.error}>Event not found!</p>;
 
   return (
     <div className={styles.wrapper}>

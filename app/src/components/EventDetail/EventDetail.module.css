@@ -100,3 +100,9 @@ body {
 .hidden {
   display: none;
 }
+
+.loading,
+.error {
+  font-weight: 600;
+  text-align: center;
+}
