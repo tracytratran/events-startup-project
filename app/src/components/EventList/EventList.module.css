@@ -1,7 +1,26 @@
-.list {
+.wrapper {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1.5rem;
+}
+
+.eventsGrid {
+  list-style: none;
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  list-style: none;
+}
+
+.noEvent {
+  text-align: center;
 }

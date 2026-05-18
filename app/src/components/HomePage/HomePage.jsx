@@ -1,16 +1,14 @@
-// Feel free to replace the content of this component with your own
+import styles from "./HomePage.module.css";
+
 function HomePage() {
   return (
-    <div
-      style={{
-        padding: "20px",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      Welcome to the homepage!
+    <div className={styles.homePage}>
+      <h1>Welcome to the homepage!</h1>
+      <img
+        src="../public/images/hyf-team34-aar.jpeg"
+        alt="Group photo of HackYourFuture team 34 Aarhus"
+        className={styles.img}
+      />
     </div>
   );
 }

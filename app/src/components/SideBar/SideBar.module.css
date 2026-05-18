@@ -1,0 +1,8 @@
+.sidebar {
+  width: 14rem;
+  flex-shrink: 0;
+}
+
+.title {
+  margin-bottom: 0;
+}

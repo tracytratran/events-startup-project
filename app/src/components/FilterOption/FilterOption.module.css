@@ -1,0 +1,30 @@
+.filterBar {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1e1e2e;
+}
+
+.filterBar:last-child {
+  border-bottom: none;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option {
+  display: flex;
+  gap: 0.65rem;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 0.95rem;
+}

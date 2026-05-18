@@ -3,8 +3,8 @@ body {
 }
 
 .wrapper {
-  max-width: 50vw;
   margin: 0 auto;
+  max-width: 50vw;
   padding: 1.5rem 1rem 3.75rem;
   color: #1a1a1a;
 }
@@ -36,26 +36,18 @@ body {
   font-weight: 700;
 }
 
+.eventIcon {
+  color: #293a7d;
+}
+
 .dateTime {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
 }
 
-.dateTimeInfo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #374151;
-}
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #374151;
-}
-
+.dateTimeInfo,
+.location,
 .ticketInfo {
   display: flex;
   align-items: center;
@@ -68,7 +60,7 @@ body {
   color: inherit;
 }
 
-.eventDescription {
+.description {
   margin: 0;
   line-height: 1.75;
   color: #374151;
@@ -88,4 +80,20 @@ body {
   border-radius: 1.25rem;
   font-size: 0.8rem;
   color: #374151;
+}
+
+.toggleBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ffd800;
+  color: #1e2235;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
