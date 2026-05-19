@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 
 export default function useEventById(eventId) {
-  const [event, setEvent] = useState();
+  const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 

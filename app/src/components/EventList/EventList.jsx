@@ -1,13 +1,13 @@
 import { useState } from "react";
+import useEventFilters from "../../hooks/useEventFilters.jsx";
+import useEvents from "../../hooks/useEvents.jsx";
 import EventCard from "../EventCard/EventCard.jsx";
 import FilterOption from "../FilterOption/FilterOption.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
+import SearchBar from "../Search/SearchBar.jsx";
+import SearchSection from "../Search/SearchSection.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
-import SearchSection from "../Search/SearchSection.jsx";
-import SearchBar from "../Search/SearchBar.jsx";
-import Pagination from "../Pagination/Pagination.jsx";
-import useEvents from "../../hooks/useEvents.jsx";
-import useEventFilters from "../../hooks/useEventFilters.jsx";
 import styles from "./EventList.module.css";
 
 export default function EventList() {
@@ -23,7 +23,7 @@ export default function EventList() {
     handleSortChange,
   } = useEventFilters(events);
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 4;
+  const eventsPerPage = 3;
   const indexOfLastEvent = Math.min(
     currentPage * eventsPerPage,
     displayedEvents.length,
@@ -98,7 +98,7 @@ export default function EventList() {
           )}
 
           {currentEvents.length > 0 && (
-            <ul className={styles.list}>
+            <ul className={styles.eventsGrid}>
               {currentEvents.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}

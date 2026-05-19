@@ -8,8 +8,8 @@ export default function PasswordInput({ name, value, handleOnChange }) {
       name={name}
       value={value}
       placeholder="••••••••"
-      minlength="8"
-      maxlength="64"
+      minLength="8"
+      maxLength="64"
       pattern="(?=.*[A-Z])(?=.*[0-9]).{8,}"
       title="At least 8 characters, one uppercase letter, and one number"
       onChange={handleOnChange}

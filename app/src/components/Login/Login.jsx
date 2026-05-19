@@ -4,7 +4,6 @@ import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
 import EmailInput from "../Input/EmailInput";
 import PasswordInput from "../Input/PasswordInput";
-import Footer from "../Layout/Footer";
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -21,7 +20,6 @@ export default function Login() {
       navigate("/");
     } catch (error) {
       console.log(error);
-      // setError("Invalid email or password!");
       setError(error.message);
     }
   }
@@ -29,7 +27,7 @@ export default function Login() {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.loginForm} onSubmit={handleOnSubmit}>
-        <h1 className={styles.formTitle}>Login</h1>
+        <h1 className={styles.title}>Login</h1>
         <p className={styles.subtitle}>Welcome back to HackYourFutureEvent</p>
         <hr className={styles.divider} />
 
@@ -59,7 +57,6 @@ export default function Login() {
           Not a member? <a href="/register">Register now</a>
         </p>
       </form>
-      <Footer />
     </div>
   );
 }

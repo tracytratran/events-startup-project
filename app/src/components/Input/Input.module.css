@@ -7,9 +7,6 @@
   font-size: 0.95rem;
   color: #fff;
   outline: none;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
 }
 
 .input::placeholder {
