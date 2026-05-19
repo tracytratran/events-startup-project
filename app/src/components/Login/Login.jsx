@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
-import { EmailInput, PasswordInput } from "../Input/Input";
+import EmailInput from "../Input/EmailInput";
+import PasswordInput from "../Input/PasswordInput";
 import Footer from "../Layout/Footer";
 import styles from "./Login.module.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
@@ -35,6 +36,7 @@ export default function Login() {
         <FormField name="email" label="Email">
           <EmailInput
             name="email"
+            value={email}
             handleOnChange={(e) => setEmail(e.target.value)}
           />
         </FormField>
@@ -42,6 +44,7 @@ export default function Login() {
         <FormField name="password" label="Password">
           <PasswordInput
             name="password"
+            value={password}
             handleOnChange={(e) => setPassword(e.target.value)}
           />
         </FormField>

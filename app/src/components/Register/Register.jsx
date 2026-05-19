@@ -10,10 +10,11 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
-import { EmailInput, PasswordInput } from "../Input/Input";
 import Footer from "../Layout/Footer";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
+import EmailInput from "../Input/EmailInput";
+import PasswordInput from "../Input/PasswordInput";
 
 export default function Register() {
   const { register } = useAuth();
@@ -42,6 +43,7 @@ export default function Register() {
         <FormField name="email" label="Email">
           <EmailInput
             name="email"
+            value={email}
             handleOnChange={(e) => setEmail(e.target.value)}
           />
         </FormField>
@@ -49,6 +51,7 @@ export default function Register() {
         <FormField name="password" label="Password">
           <PasswordInput
             name="password"
+            value={password}
             handleOnChange={(e) => setPassword(e.target.value)}
           />
         </FormField>
