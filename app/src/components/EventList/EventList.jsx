@@ -34,6 +34,11 @@ export default function EventList() {
     indexOfLastEvent,
   );
 
+  function handleOnSearch(value = "") {
+    setSearch(value);
+    setCurrentPage(1);
+  }
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -43,14 +48,8 @@ export default function EventList() {
       <SearchSection>
         <SearchBar
           search={search}
-          onSearch={(e) => {
-            setSearch(e.target.value);
-            setCurrentPage(1);
-          }}
-          onClearSearch={() => {
-            setSearch("");
-            setCurrentPage(1);
-          }}
+          onSearch={(e) => handleOnSearch(e.target.value)}
+          onClearSearch={() => handleOnSearch()}
         />
       </SearchSection>
 
