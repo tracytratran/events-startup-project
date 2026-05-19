@@ -9,6 +9,7 @@ import SearchSection from "../Search/SearchSection.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
 import styles from "./EventList.module.css";
+import useEventsPerPage from "../../hooks/useEventsPerPage.jsx";
 
 export default function EventList() {
   const { events, loading, error } = useEvents();
@@ -22,8 +23,8 @@ export default function EventList() {
     handleCategoryChange,
     handleSortChange,
   } = useEventFilters(events);
+  const eventsPerPage = useEventsPerPage();
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 3;
   const indexOfLastEvent = Math.min(
     currentPage * eventsPerPage,
     displayedEvents.length,
