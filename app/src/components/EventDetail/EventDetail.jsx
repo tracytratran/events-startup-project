@@ -29,7 +29,7 @@ export default function EventDetail() {
     <div className={styles.wrapper}>
       <img
         className={styles.image}
-        src="../public/images/mock-event-cover.jpg"
+        src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
       />
 
