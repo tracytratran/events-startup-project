@@ -10,8 +10,6 @@ import useEvents from "../../hooks/useEvents.jsx";
 import useEventFilters from "../../hooks/useEventFilters.jsx";
 import styles from "./EventList.module.css";
 
-// TODO: add a "Buy ticket" button to each event card
-
 export default function EventList() {
   const { events, loading, error } = useEvents();
   const {
@@ -26,7 +24,10 @@ export default function EventList() {
   } = useEventFilters(events);
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 4;
-  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfLastEvent = Math.min(
+    currentPage * eventsPerPage,
+    displayedEvents.length,
+  );
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = displayedEvents.slice(
     indexOfFirstEvent,
