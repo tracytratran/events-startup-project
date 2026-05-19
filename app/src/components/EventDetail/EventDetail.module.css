@@ -4,16 +4,16 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 50vw;
   padding: 1.5rem 1rem 3.75rem;
+  max-width: 50vw;
   color: #1a1a1a;
 }
 
 .image {
+  margin-bottom: 1.5rem;
   width: 100%;
   height: 20rem;
   border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
   object-fit: cover;
 }
 
@@ -96,4 +96,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.loading,
+.error {
+  font-weight: 600;
+  text-align: center;
 }

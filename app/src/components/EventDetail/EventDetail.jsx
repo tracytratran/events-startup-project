@@ -3,16 +3,23 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
-import events from "../../data/events.js";
+import { useParams } from "react-router-dom";
+import useEventById from "../../hooks/useEventById.jsx";
 import styles from "./EventDetail.module.css";
 
 export default function EventDetail() {
+  const { id } = useParams();
+  const { event: eventToDisplay, loading, error } = useEventById(id);
   const [isShowed, setIsShowed] = useState(false);
-  const eventToDisplay = events[0];
+
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+
+  if (error) return <p className={styles.error}>Error: {error}</p>;
+
+  if (!eventToDisplay) return <p className={styles.error}>Event not found!</p>;
 
   const price =
     eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
   const ticketsAvailable =
     eventToDisplay.ticketsAvailable === 0
       ? "Sold out"
@@ -22,7 +29,7 @@ export default function EventDetail() {
     <div className={styles.wrapper}>
       <img
         className={styles.image}
-        src="../public/images/mock-event-img.jpg"
+        src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
       />
 
