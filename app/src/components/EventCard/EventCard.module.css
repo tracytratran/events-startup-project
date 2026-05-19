@@ -20,6 +20,7 @@
   height: 12rem;
   display: block;
   object-fit: cover;
+  filter: opacity(80%);
 }
 
 .category {
@@ -42,10 +43,10 @@
 }
 
 .date {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.5;
   color: #3f3dbf;
   word-break: break-word;
 }

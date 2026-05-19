@@ -22,7 +22,6 @@ export default function EventCard({ event }) {
     <Link to={`/events/${event.id}`} className={styles.link}>
       <li className={styles.card}>
         <div className={styles.imageWrapper}>
-          {/* <div className={styles.image}></div> */}
           <img
             src={event.image}
             alt={`Photo of ${event.name}`}
