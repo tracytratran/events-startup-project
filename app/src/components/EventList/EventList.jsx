@@ -29,7 +29,7 @@ export default function EventList() {
     currentPage * eventsPerPage,
     displayedEvents.length,
   );
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const indexOfFirstEvent = (currentPage - 1) * eventsPerPage;
   const currentEvents = displayedEvents.slice(
     indexOfFirstEvent,
     indexOfLastEvent,
