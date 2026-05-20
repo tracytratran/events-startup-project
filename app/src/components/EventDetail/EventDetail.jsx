@@ -3,12 +3,26 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
-import events from "../../data/events.js";
+import { useParams } from "react-router-dom";
+import { useCart } from "../../context/CartContext.jsx";
+import useEventById from "../../hooks/useEventById.jsx";
 import styles from "./EventDetail.module.css";
 
 export default function EventDetail() {
+  const { id } = useParams();
+  const { event: eventToDisplay, loading, error } = useEventById(id);
+  const { addItemToCart } = useCart();
   const [isShowed, setIsShowed] = useState(false);
-  const eventToDisplay = events[0];
+
+  if (!eventToDisplay) return null;
+
+  const price =
+    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
+
+  const ticketsAvailable =
+    eventToDisplay.ticketsAvailable === 0
+      ? "Sold out"
+      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
 
   const price =
     eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
@@ -19,14 +33,25 @@ export default function EventDetail() {
       : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
       <img
         className={styles.image}
         src="../public/images/mock-event-img.jpg"
         alt={eventToDisplay.name}
       />
 
-      <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+      <div className={styles.header}>
+        <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+        <button
+          onClick={() =>
+            addItemToCart(eventToDisplay.name, eventToDisplay.price)
+          }
+          disabled={eventToDisplay.ticketsAvailable === 0}
+          className={styles.buyBtn}
+        >
+          Buy Ticket
+        </button>
+      </div>
 
       <hr className={styles.divider} />
 
