@@ -96,7 +96,7 @@ export default function EventList() {
           )}
 
           {currentEvents.length > 0 && (
-            <ul className={styles.list}>
+            <ul className={styles.eventsGrid}>
               {currentEvents.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
