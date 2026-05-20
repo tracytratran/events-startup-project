@@ -29,8 +29,13 @@ export default function Account() {
         </p>
       ) : (
         <ul className={styles.orderList}>
-          {orders.map((order) => (
-            <OrderItem key={order.id} id={order.id} events={order.events} />
+          {orders.map((order, index) => (
+            <OrderItem
+              key={order.id}
+              id={order.id}
+              events={order.events}
+              index={index}
+            />
           ))}
         </ul>
       )}
