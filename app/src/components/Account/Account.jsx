@@ -14,7 +14,7 @@ export default function Account() {
     async function fetchOrders() {
       try {
         const userOrders = await getOrders();
-        setOrders(userOrders.filter((order) => order.user_id === user.id));
+        setOrders(userOrders.filter((order) => order.userId === user.id));
       } catch (err) {
         setError(err.message);
       }
