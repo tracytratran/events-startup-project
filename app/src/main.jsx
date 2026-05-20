@@ -6,8 +6,8 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import Account from "./components/Account/Account.jsx";
 import Cart from "./components/Cart/Cart.jsx";
-import Checkout from "./components/Checkout/Checkout.jsx";
 import EventDetail from "./components/EventDetail/EventDetail.jsx";
 import EventList from "./components/EventList/EventList.jsx";
 import HomePage from "./components/HomePage/HomePage.jsx";
@@ -16,11 +16,9 @@ import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
+import { OrderProvider } from "./context/OrderContext.jsx";
 import "./main.css";
-import Account from "./components/Account/Account.jsx";
 
-// Cart model: cart items are stored in localStorage via CartContext (no backend needed).
-// At checkout, the cart is POSTed to POST /api/orders and then cleared.
 const ProtectedRoutes = () => {
   const accessToken = localStorage.getItem("token");
 
@@ -46,10 +44,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Layout />,
-        children: [
-          { path: "my-account", element: <Account /> },
-          { path: "checkout", element: <Checkout /> },
-        ],
+        children: [{ path: "my-account", element: <Account /> }],
       },
     ],
   },
@@ -59,7 +54,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <CartProvider>
-        <RouterProvider router={router} />
+        <OrderProvider>
+          <RouterProvider router={router} />
+        </OrderProvider>
       </CartProvider>
     </AuthProvider>
   </React.StrictMode>,
