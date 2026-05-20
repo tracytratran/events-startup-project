@@ -19,7 +19,6 @@ export default function Register() {
       await register(email, password);
       navigate("/");
     } catch (error) {
-      console.error(error);
       setError(error.message);
     }
   }

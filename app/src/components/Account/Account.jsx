@@ -9,11 +9,16 @@ export default function Account() {
   const { user } = useAuth();
   const { getOrders } = useOrder();
   const [orders, setOrders] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchOrders() {
-      const userOrders = await getOrders();
-      setOrders(userOrders.filter((order) => order.user_id === user.id));
+      try {
+        const userOrders = await getOrders();
+        setOrders(userOrders.filter((order) => order.user_id === user.id));
+      } catch (err) {
+        setError(err.message);
+      }
     }
 
     fetchOrders();

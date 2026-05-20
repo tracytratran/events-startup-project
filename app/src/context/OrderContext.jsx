@@ -34,6 +34,10 @@ export function OrderProvider({ children }) {
       },
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+    }
+
     const orders = await response.json();
     return orders;
   }
