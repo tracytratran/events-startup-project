@@ -24,6 +24,14 @@ export default function EventDetail() {
       ? "Sold out"
       : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
 
+  const price =
+    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
+
+  const ticketsAvailable =
+    eventToDisplay.ticketsAvailable === 0
+      ? "Sold out"
+      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
+
   return (
     <div className={styles.container}>
       <img
