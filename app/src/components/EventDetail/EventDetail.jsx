@@ -14,26 +14,29 @@ export default function EventDetail() {
   const { addItemToCart } = useCart();
   const [isShowed, setIsShowed] = useState(false);
 
-  if (!eventToDisplay) return null;
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+
+  if (error) return <p className={styles.error}>Error: {error}</p>;
+
+  if (!eventToDisplay) return <p className={styles.error}>Event not found!</p>;
 
   const price =
     eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
   const ticketsAvailable =
     eventToDisplay.ticketsAvailable === 0
       ? "Sold out"
       : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.eventContainer}>
       <img
-        className={styles.image}
-        src="../public/images/mock-event-img.jpg"
+        src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
+        className={styles.image}
       />
 
       <div className={styles.header}>
-        <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+        <h1 className={styles.title}>{eventToDisplay.name}</h1>
         <button
           onClick={() =>
             addItemToCart(eventToDisplay.name, eventToDisplay.price)

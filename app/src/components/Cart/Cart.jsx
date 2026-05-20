@@ -1,13 +1,13 @@
-import Alert from "@mui/material/Alert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
+import { useOrder } from "../../context/OrderContext";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 import styles from "./Cart.module.css";
-import { useOrder } from "../../context/OrderContext";
 
 export default function Cart() {
   const { user } = useAuth();
@@ -51,12 +51,12 @@ export default function Cart() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>My cart</h1>
-        <span className={styles.count}>
+        <span className={styles.ticketCount}>
           {ticketsCount} {ticketsCount > 1 ? "tickets" : "ticket"}
         </span>
       </div>
 
-      <ul className={styles.list}>
+      <ul className={styles.cartList}>
         {eventTickets.map((ticket) => (
           <CartItem
             key={ticket.name}

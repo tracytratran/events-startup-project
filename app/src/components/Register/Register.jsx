@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
-import { EmailInput, PasswordInput } from "../Input/Input";
-import Footer from "../Layout/Footer";
+import EmailInput from "../Input/EmailInput";
+import PasswordInput from "../Input/PasswordInput";
 import styles from "./Register.module.css";
 
 export default function Register() {
@@ -26,12 +26,13 @@ export default function Register() {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.registerForm} onSubmit={handleOnSubmit}>
-        <h1 className={styles.formTitle}>Register here</h1>
+        <h1 className={styles.title}>Register here</h1>
         <hr className={styles.divider} />
 
         <FormField name="email" label="Email">
           <EmailInput
             name="email"
+            value={email}
             handleOnChange={(e) => setEmail(e.target.value)}
           />
         </FormField>
@@ -39,6 +40,7 @@ export default function Register() {
         <FormField name="password" label="Password">
           <PasswordInput
             name="password"
+            value={password}
             handleOnChange={(e) => setPassword(e.target.value)}
           />
         </FormField>
@@ -49,7 +51,6 @@ export default function Register() {
           Register
         </button>
       </form>
-      <Footer />
     </div>
   );
 }

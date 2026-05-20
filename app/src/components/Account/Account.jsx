@@ -1,4 +1,3 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useOrder } from "../../context/OrderContext";
@@ -25,7 +24,7 @@ export default function Account() {
   }, []);
 
   return (
-    <div className={styles.orderWrapper}>
+    <div className={styles.container}>
       <h1 className={styles.title}>My order history</h1>
 
       {orders.length === 0 ? (

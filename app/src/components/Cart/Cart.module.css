@@ -18,12 +18,12 @@
   color: #1e2235;
 }
 
-.count {
+.ticketCount {
   font-size: 0.9rem;
   color: #666666;
 }
 
-.list {
+.cartList {
   list-style: none;
   margin: 0 0 1.5rem;
   padding: 0;

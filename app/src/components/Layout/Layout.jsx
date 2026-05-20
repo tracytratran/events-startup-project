@@ -1,7 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
-import hyfLogo from "../../assets/hyf.svg";
-import Header from "./Header.jsx";
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer.jsx";
+import Header from "./Header.jsx";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
@@ -9,7 +8,7 @@ export default function Layout() {
     <div className={styles.wrapper}>
       <Header />
 
-      <main className={styles.mainContent}>
+      <main className={styles.main}>
         <Outlet />
       </main>
 

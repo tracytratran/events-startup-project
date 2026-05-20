@@ -2,7 +2,7 @@ body {
   font-size: 0.9rem;
 }
 
-.container {
+.eventContainer {
   margin: 0 auto;
   padding: 1.5rem 1rem 3.75rem;
   max-width: 50vw;
@@ -23,7 +23,7 @@ body {
   justify-content: space-between;
 }
 
-.eventTitle {
+.title {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
@@ -129,4 +129,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.loading,
+.error {
+  font-weight: 600;
+  text-align: center;
 }

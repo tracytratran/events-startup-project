@@ -4,7 +4,7 @@ import styles from "./CartItem.module.css";
 export default function CartItem({ name, price, quantity }) {
   const { updateItemQuantity, removeItemFromCart } = useCart();
   return (
-    <li key={name} className={styles.item}>
+    <li key={name} className={styles.cartItem}>
       <div className={styles.itemInfo}>
         <p className={styles.itemName}>{name}</p>
         <p className={styles.itemPrice}>

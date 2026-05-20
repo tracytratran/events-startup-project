@@ -34,10 +34,10 @@ const router = createBrowserRouter([
       { path: "events", element: <EventList /> },
       { path: "events/:id", element: <EventDetail /> },
       { path: "my-cart", element: <Cart /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
   {
     element: <ProtectedRoutes />,
     children: [

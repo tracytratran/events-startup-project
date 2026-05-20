@@ -23,10 +23,13 @@ export default function EventCard({ event }) {
 
   return (
     <Link to={`/events/${event.id}`} className={styles.link}>
-      <li className={styles.card}>
+      <li className={styles.eventCard}>
         <div className={styles.imageWrapper}>
-          <div className={styles.image}></div>
-
+          <img
+            src={event.image}
+            alt={`Photo of ${event.name}`}
+            className={styles.image}
+          />
           <span className={styles.category}>{event.category}</span>
           <button
             onClick={(e) => {
@@ -42,7 +45,6 @@ export default function EventCard({ event }) {
 
         <div className={styles.eventInfo}>
           <span className={styles.date}>{formattedDate}</span>
-
           <div>
             <h2 className={styles.title}>{event.name}</h2>
             <p className={styles.location}>

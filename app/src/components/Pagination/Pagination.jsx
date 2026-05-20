@@ -6,12 +6,8 @@ export default function Pagination({
   setCurrentPage,
   currentPage,
 }) {
-  const pageNumbers = [];
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
-
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
