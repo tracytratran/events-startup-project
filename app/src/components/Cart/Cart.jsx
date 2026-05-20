@@ -1,4 +1,5 @@
 import Alert from "@mui/material/Alert";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -6,11 +7,18 @@ import { useCart } from "../../context/CartContext";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 import styles from "./Cart.module.css";
+import { useOrder } from "../../context/OrderContext";
 
 export default function Cart() {
   const { user } = useAuth();
-  const { eventTickets, ticketsCount, removeItemFromCart, updateItemQuantity } =
-    useCart();
+  const {
+    eventTickets,
+    ticketsCount,
+    removeItemFromCart,
+    updateItemQuantity,
+    clearCart,
+  } = useCart();
+  const { createOrder } = useOrder();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -24,13 +32,15 @@ export default function Cart() {
       setError("You must be logged in to checkout!");
       return;
     }
-    navigate("/checkout");
+    createOrder(eventTickets);
+    navigate("/my-account");
+    clearCart();
   }
 
   if (ticketsCount === 0) {
     return (
       <div className={styles.emptyCart}>
-        <div className={styles.emptyIcon}>🛒</div>
+        <ShoppingCartIcon fontSize="large" className={styles.emptyIcon} />
         <p className={styles.emptyTitle}>Your cart is empty</p>
         <p className={styles.emptySubtitle}>Add some events to get started</p>
       </div>
@@ -57,7 +67,7 @@ export default function Cart() {
         ))}
       </ul>
 
-      <CartSummary />
+      <CartSummary eventTickets={eventTickets} />
 
       <button onClick={handleCheckout} className={styles.checkoutBtn}>
         Proceed to checkout
