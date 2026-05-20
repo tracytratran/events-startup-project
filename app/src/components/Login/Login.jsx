@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
 import EmailInput from "../Input/EmailInput";
@@ -53,7 +53,8 @@ export default function Login() {
         </button>
 
         <p className={styles.registerLink}>
-          Not a member? <a href="/register">Register now</a>
+          Not a member?
+          <Link to={"/register"}>Register now</Link>
         </p>
       </form>
     </div>
