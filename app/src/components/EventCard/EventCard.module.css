@@ -8,6 +8,7 @@
   border: 1px solid #d9d9d9;
   border-radius: 1rem;
   box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -17,10 +18,12 @@
 
 .image {
   height: 12rem;
+  height: 12rem;
   background: #cfcfcf;
 }
 
 .category {
+  padding: 0.75rem;
   padding: 0.75rem;
   display: inline-block;
   position: absolute;
@@ -28,8 +31,31 @@
   top: 1rem;
   background: #f4d63f;
   border-radius: 0.5rem;
-  color: #1e2235;
   font-weight: 600;
+  color: #1e2235;
+}
+
+.addToCartBtn {
+  padding: 0.5rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: #f4d63f;
+  border: none;
+  border-radius: 0.5rem;
+  color: #1e2235;
+  cursor: pointer;
+}
+
+.addToCartBtn:not(:disabled):hover {
+  background-color: #e0b010;
+}
+
+.addToCartBtn:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
 .addToCartBtn {
@@ -57,7 +83,9 @@
 
 .eventInfo {
   padding: 1.25rem;
+  padding: 1.25rem;
   display: grid;
+  grid-template-columns: 4.5rem 1fr;
   grid-template-columns: 4.5rem 1fr;
   gap: 1rem;
 }
@@ -68,6 +96,8 @@
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.2;
+  text-align: center;
+  text-align: center;
   word-break: break-word;
 }
 
@@ -86,9 +116,11 @@
 
 .ticketInfo {
   margin: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   color: #444444;
   font-size: 0.95rem;
+  color: #444444;
 }
