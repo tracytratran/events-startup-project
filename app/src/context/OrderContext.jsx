@@ -14,7 +14,7 @@ export function OrderProvider({ children }) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify({ user_id: user.id, events }),
+      body: JSON.stringify({ userId: user.id, events }),
     });
 
     if (!response.ok) {
