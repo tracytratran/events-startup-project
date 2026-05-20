@@ -13,6 +13,11 @@ export default function Header() {
   const { ticketsCount } = useCart();
   const navigate = useNavigate();
 
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -47,7 +52,7 @@ export default function Header() {
                 fontSize="medium"
                 className={styles.userIcon}
               />
-              <button onClick={logout} className={styles.signoutBtn}>
+              <button onClick={handleLogout} className={styles.signoutBtn}>
                 Sign out
               </button>
             </>
