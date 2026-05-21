@@ -8,7 +8,8 @@ export default function useEventFilters(events) {
   const handlePriceChange = (e) => handleFilterChange(e, setCheckedPrice);
   const handleCategoryChange = (e) => handleFilterChange(e, setCheckedCategory);
   const priceFilters = ["Free", "Paid"];
-  const categoryFilters = [...new Set(events.map((event) => event.category))];
+  const categories = events.map((event) => event.category);
+  const categoryFilters = [...new Set(categories.sort())];
   const displayedEvents = sortEvents(filterEvents());
 
   function sortEvents(filteredEvents) {
