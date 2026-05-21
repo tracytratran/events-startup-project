@@ -17,6 +17,7 @@ import Register from "./components/Register/Register.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { OrderProvider } from "./context/OrderContext.jsx";
+import { SnackbarProvider } from "./context/SnackbarContext.jsx";
 import "./main.css";
 
 const ProtectedRoutes = () => {
@@ -53,11 +54,13 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <CartProvider>
-        <OrderProvider>
-          <RouterProvider router={router} />
-        </OrderProvider>
-      </CartProvider>
+      <SnackbarProvider>
+        <CartProvider>
+          <OrderProvider>
+            <RouterProvider router={router} />
+          </OrderProvider>
+        </CartProvider>
+      </SnackbarProvider>
     </AuthProvider>
   </React.StrictMode>,
 );

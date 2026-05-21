@@ -8,6 +8,7 @@ import { useOrder } from "../../context/OrderContext";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 import styles from "./Cart.module.css";
+import { useSnackbar } from "../../context/SnackbarContext";
 
 export default function Cart() {
   const { user } = useAuth();
@@ -19,6 +20,7 @@ export default function Cart() {
     clearCart,
   } = useCart();
   const { createOrder } = useOrder();
+  const { showSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -33,6 +35,7 @@ export default function Cart() {
       return;
     }
     createOrder(eventTickets);
+    showSnackbar("Checkout completed successfully!");
     navigate("/my-account");
     clearCart();
   }
