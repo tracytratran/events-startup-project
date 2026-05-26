@@ -5,7 +5,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { ListItemIcon, Tooltip } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -41,9 +41,7 @@ export default function MobileMenu({ user, onLogout, ticketsCount }) {
     <div className={styles.mobileActions}>
       <IconButton onClick={() => navigate("/my-cart")}>
         <Badge badgeContent={ticketsCount} color="primary">
-          <Tooltip title="My Cart">
-            <ShoppingCartIcon fontSize="medium" className={styles.cartIcon} />
-          </Tooltip>
+          <ShoppingCartIcon fontSize="medium" className={styles.cartIcon} />
         </Badge>
       </IconButton>
       <IconButton onClick={handleMenuOpen}>

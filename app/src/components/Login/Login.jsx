@@ -52,9 +52,11 @@ export default function Login() {
           Login
         </button>
 
-        <p className={styles.registerLink}>
+        <p className={styles.register}>
           Not a member?
-          <Link to={"/register"}>Register now</Link>
+          <Link to={"/register"} className={styles.registerLink}>
+            Register now
+          </Link>
         </p>
       </form>
     </div>
