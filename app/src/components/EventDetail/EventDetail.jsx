@@ -44,6 +44,7 @@ export default function EventDetail() {
           disabled={eventToDisplay.ticketsAvailable === 0}
           className={styles.buyBtn}
         >
+          <LocalActivityIcon fontSize="small" />
           Buy Ticket
         </button>
       </div>
