@@ -1,3 +1,4 @@
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
@@ -56,6 +57,17 @@ export default function EventCard({ event }) {
             </p>
           </div>
         </div>
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            addItemToCart(event.name, event.price);
+          }}
+          disabled={event.ticketsAvailable === 0}
+          className={styles.addBtn}
+        >
+          <AddCircleIcon />
+        </button>
       </li>
     </Link>
   );
