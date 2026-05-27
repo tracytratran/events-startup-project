@@ -1,8 +1,35 @@
 .sidebar {
-  width: 14rem;
-  flex-shrink: 0;
+  order: 2;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .title {
-  margin-bottom: 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #636375;
+  white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+  .sidebar {
+    order: 0;
+    width: 14rem;
+    overflow-x: visible;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .title {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: initial;
+  }
 }

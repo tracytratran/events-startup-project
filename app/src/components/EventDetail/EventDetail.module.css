@@ -108,7 +108,7 @@ body {
   padding: 0.25rem 0.875rem;
   display: inline-block;
   background: #fff;
-  border: 0.0625rem solid #d1d5db;
+  border: 1px solid #d1d5db;
   border-radius: 1.25rem;
   font-size: 0.8rem;
   color: #374151;
