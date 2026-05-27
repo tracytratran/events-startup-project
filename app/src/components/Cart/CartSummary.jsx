@@ -14,6 +14,7 @@ export default function CartSummary({ eventTickets }) {
           <span>
             {ticket.name} × {ticket.quantity}
           </span>
+
           <span>
             {ticket.price === 0
               ? "Free"

@@ -1,6 +1,7 @@
 .container {
   margin: 0 auto;
   padding: 2rem 1rem;
+  max-width: 40rem;
 }
 
 .header {
@@ -79,10 +80,4 @@
   margin-top: 1rem;
   border-radius: 1rem;
   font: inherit !important;
-}
-
-@media (min-width: 600px) {
-  .container {
-    max-width: 35vw;
-  }
 }

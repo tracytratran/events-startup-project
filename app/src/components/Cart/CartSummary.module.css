@@ -10,8 +10,9 @@
 }
 
 .summaryRow {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
   font-size: 0.9rem;
   color: #666666;
 }
