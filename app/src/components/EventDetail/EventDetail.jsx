@@ -1,9 +1,10 @@
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
 import useEventById from "../../hooks/useEventById.jsx";
 import styles from "./EventDetail.module.css";
@@ -12,6 +13,7 @@ export default function EventDetail() {
   const { id } = useParams();
   const { event: eventToDisplay, loading, error } = useEventById(id);
   const { addItemToCart } = useCart();
+  const navigate = useNavigate();
   const [isShowed, setIsShowed] = useState(false);
 
   if (loading) return <p className={styles.loading}>Loading...</p>;
@@ -29,6 +31,11 @@ export default function EventDetail() {
 
   return (
     <div className={styles.eventContainer}>
+      <button onClick={() => navigate("/events")} className={styles.backBtn}>
+        <ArrowBackIosNewIcon fontSize="medium" />
+        Go back to All Events
+      </button>
+
       <img
         src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
