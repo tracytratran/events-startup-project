@@ -6,7 +6,11 @@
   align-items: center;
 }
 
-.img {
+.title {
+  text-align: center;
+}
+
+.imgage {
   width: 95vw;
   border-radius: 1rem;
 }

@@ -12,7 +12,8 @@ export default function useEvents() {
         setLoading(true);
         setError(null);
         const response = await fetch(api("events"));
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (!response.ok)
+          throw new Error(`HTTP ${response.status} ${response.statusText}`);
 
         const data = await response.json();
 

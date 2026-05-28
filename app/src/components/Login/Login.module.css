@@ -1,33 +1,27 @@
 .formWrapper {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   background: #293a7d;
 }
 
 .loginForm {
-  margin: 5rem auto auto;
-  padding: 2.5rem;
-  max-width: 25rem;
-  width: 100%;
+  padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 1rem;
   color: #fff;
 }
 
-.formTitle {
+.title {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: clamp(1.4rem, 4vw, 1.75rem);
   font-weight: 700;
 }
 
 .subtitle {
   margin-top: -0.75rem;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
   text-align: center;
 }
 
@@ -43,18 +37,15 @@
   border: none;
   border-radius: 0.5rem;
   font: inherit;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
   font-weight: 600;
   color: #293a7d;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition:
-    opacity 0.15s,
-    transform 0.1s;
 }
 
 .loginBtn:hover {
-  opacity: 0.92;
+  opacity: 0.95;
   transform: translateY(-1px);
 }
 
@@ -62,23 +53,44 @@
   transform: translateY(0);
 }
 
-.registerLink {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.85rem;
+.register {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: clamp(0.8rem, 2vw, 0.85rem);
   text-align: center;
+  color: rgba(255, 255, 255, 0.45);
 }
 
-.registerLink a {
+.registerLink {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
 }
 
-.registerLink a:hover {
+.registerLink:hover {
   border-color: rgba(255, 255, 255, 0.6);
   color: #fff;
 }
 
 .errorMessage {
+  font-size: clamp(0.8rem, 2vw, 0.875rem);
   color: #ff7070;
+}
+
+@media (min-width: 600px) {
+  .formWrapper {
+    justify-content: center;
+  }
+
+  .loginForm {
+    margin: 0 auto;
+    padding: 2.5rem;
+    max-width: 25rem;
+    width: 100%;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+  }
 }

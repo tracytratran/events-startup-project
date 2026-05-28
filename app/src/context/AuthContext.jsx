@@ -13,7 +13,23 @@ export function AuthProvider({ children }) {
     return localStorage.getItem("token") || null;
   });
 
+  async function checkUsers(email) {
+    const response = await fetch(
+      api(`check-email?email=${encodeURIComponent(email)}`),
+    );
+    if (!response.ok) return [];
+    return response.json();
+  }
+
   async function login(email, password) {
+    const users = await checkUsers(email);
+
+    if (users.length === 0) {
+      throw new Error(
+        "No account found with this email. Please register first!",
+      );
+    }
+
     const response = await fetch(api("login"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,7 +37,7 @@ export function AuthProvider({ children }) {
     });
 
     if (!response.ok) {
-      throw new Error("Invalid email or password!");
+      throw new Error("Incorrect email or password");
     }
 
     const { accessToken, user } = await response.json();
@@ -29,6 +45,12 @@ export function AuthProvider({ children }) {
   }
 
   async function register(email, password) {
+    const users = await checkUsers(email);
+
+    if (users.length !== 0) {
+      throw new Error("This account exists! Please log in instead.");
+    }
+
     const response = await fetch(api("register"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },

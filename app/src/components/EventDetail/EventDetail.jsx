@@ -1,9 +1,10 @@
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
 import useEventById from "../../hooks/useEventById.jsx";
 import styles from "./EventDetail.module.css";
@@ -12,36 +13,37 @@ export default function EventDetail() {
   const { id } = useParams();
   const { event: eventToDisplay, loading, error } = useEventById(id);
   const { addItemToCart } = useCart();
+  const navigate = useNavigate();
   const [isShowed, setIsShowed] = useState(false);
 
-  if (!eventToDisplay) return null;
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+
+  if (error) return <p className={styles.error}>Error: {error}</p>;
+
+  if (!eventToDisplay) return <p className={styles.error}>Event not found!</p>;
 
   const price =
     eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
-  const ticketsAvailable =
-    eventToDisplay.ticketsAvailable === 0
-      ? "Sold out"
-      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
-
-  const price =
-    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
   const ticketsAvailable =
     eventToDisplay.ticketsAvailable === 0
       ? "Sold out"
       : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.eventContainer}>
+      <button onClick={() => navigate("/events")} className={styles.backBtn}>
+        <ArrowBackIosNewIcon fontSize="medium" />
+        Go back to All Events
+      </button>
+
       <img
-        className={styles.image}
-        src="../public/images/mock-event-img.jpg"
+        src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
+        className={styles.image}
       />
 
       <div className={styles.header}>
-        <h1 className={styles.eventTitle}>{eventToDisplay.name}</h1>
+        <h1 className={styles.title}>{eventToDisplay.name}</h1>
         <button
           onClick={() =>
             addItemToCart(eventToDisplay.name, eventToDisplay.price)
@@ -49,6 +51,7 @@ export default function EventDetail() {
           disabled={eventToDisplay.ticketsAvailable === 0}
           className={styles.buyBtn}
         >
+          <LocalActivityIcon fontSize="small" />
           Buy Ticket
         </button>
       </div>

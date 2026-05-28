@@ -1,9 +1,8 @@
 import { useCart } from "../../context/CartContext";
 import styles from "./CartSummary.module.css";
 
-export default function CartSummary() {
-  const { eventTickets } = useCart();
-  const total = eventTickets.reduce(
+export default function CartSummary({ eventTickets }) {
+  const total = (eventTickets || []).reduce(
     (sum, ticket) => sum + ticket.price * ticket.quantity,
     0,
   );
@@ -15,6 +14,7 @@ export default function CartSummary() {
           <span>
             {ticket.name} × {ticket.quantity}
           </span>
+
           <span>
             {ticket.price === 0
               ? "Free"

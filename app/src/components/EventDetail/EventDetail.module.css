@@ -2,11 +2,31 @@ body {
   font-size: 0.9rem;
 }
 
-.container {
+.eventContainer {
   margin: 0 auto;
   padding: 1.5rem 1rem 3.75rem;
-  max-width: 50vw;
   color: #1a1a1a;
+}
+
+.backBtn {
+  margin-bottom: 0.25rem;
+  padding: 0.5rem 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: transparent;
+  border: none;
+  color: #293a7d;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  border-radius: 0.5rem;
+  background-color: #293a7d;
+  color: #fff;
 }
 
 .image {
@@ -19,11 +39,11 @@ body {
 
 .header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.eventTitle {
+.title {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
@@ -32,6 +52,10 @@ body {
 
 .buyBtn {
   padding: 0.625rem 1.25rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   background-color: #ffd800;
   border: none;
   border-radius: 0.5rem;
@@ -105,7 +129,7 @@ body {
   padding: 0.25rem 0.875rem;
   display: inline-block;
   background: #fff;
-  border: 0.0625rem solid #d1d5db;
+  border: 1px solid #d1d5db;
   border-radius: 1.25rem;
   font-size: 0.8rem;
   color: #374151;
@@ -129,4 +153,21 @@ body {
 
 .hidden {
   display: none;
+}
+
+.loading,
+.error {
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .eventContainer {
+    max-width: 50vw;
+  }
+
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../FormField/FormField";
-import { EmailInput, PasswordInput } from "../Input/Input";
-import Footer from "../Layout/Footer";
+import EmailInput from "../Input/EmailInput";
+import PasswordInput from "../Input/PasswordInput";
 import styles from "./Login.module.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
@@ -19,7 +19,6 @@ export default function Login() {
       await login(email, password);
       navigate("/");
     } catch (error) {
-      console.log(error);
       setError(error.message);
     }
   }
@@ -27,13 +26,14 @@ export default function Login() {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.loginForm} onSubmit={handleOnSubmit}>
-        <h1 className={styles.formTitle}>Login</h1>
+        <h1 className={styles.title}>Login</h1>
         <p className={styles.subtitle}>Welcome back to HackYourFutureEvent</p>
         <hr className={styles.divider} />
 
         <FormField name="email" label="Email">
           <EmailInput
             name="email"
+            value={email}
             handleOnChange={(e) => setEmail(e.target.value)}
           />
         </FormField>
@@ -41,6 +41,7 @@ export default function Login() {
         <FormField name="password" label="Password">
           <PasswordInput
             name="password"
+            value={password}
             handleOnChange={(e) => setPassword(e.target.value)}
           />
         </FormField>
@@ -51,11 +52,13 @@ export default function Login() {
           Login
         </button>
 
-        <p className={styles.registerLink}>
-          Not a member? <a href="/register">Register now</a>
+        <p className={styles.register}>
+          Not a member?
+          <Link to={"/register"} className={styles.registerLink}>
+            Register now
+          </Link>
         </p>
       </form>
-      <Footer />
     </div>
   );
 }
