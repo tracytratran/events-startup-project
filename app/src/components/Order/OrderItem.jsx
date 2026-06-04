@@ -1,4 +1,4 @@
-import CartSummary from "../Cart/CartSummary";
+import CartSummary from "../CartSummary/CartSummary";
 import styles from "./OrderItem.module.css";
 
 export default function OrderItem({ id, events, index }) {

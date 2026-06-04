@@ -2,13 +2,13 @@ import { useState } from "react";
 import useEventFilters from "../../hooks/useEventFilters.jsx";
 import useEvents from "../../hooks/useEvents.jsx";
 import useEventsPerPage from "../../hooks/useEventsPerPage.jsx";
-import EventCard from "../EventCard/EventCard.jsx";
-import FilterOption from "../FilterOption/FilterOption.jsx";
-import Pagination from "../Pagination/Pagination.jsx";
-import SearchBar from "../Search/SearchBar.jsx";
-import SearchSection from "../Search/SearchSection.jsx";
-import SideBar from "../SideBar/SideBar.jsx";
-import SortBar from "../SortBar/SortBar.jsx";
+import EventCard from "../../components/EventCard/EventCard.jsx";
+import FilterOption from "../../components/FilterOption/FilterOption.jsx";
+import Pagination from "../../components/Pagination/Pagination.jsx";
+import SearchBar from "../../components/Search/SearchBar.jsx";
+import SearchSection from "../../components/Search/SearchSection.jsx";
+import SideBar from "../../components/SideBar/SideBar.jsx";
+import SortBar from "../../components/SortBar/SortBar.jsx";
 import styles from "./EventList.module.css";
 
 export default function EventList() {

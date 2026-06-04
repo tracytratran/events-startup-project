@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useOrder } from "../../context/OrderContext";
-import CartItem from "./CartItem";
-import CartSummary from "./CartSummary";
+import CartItem from "../../components/CartItem/CartItem";
+import CartSummary from "../../components/CartSummary/CartSummary";
 import styles from "./Cart.module.css";
 import { useSnackbar } from "../../context/SnackbarContext";
 

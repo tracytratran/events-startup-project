@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import FormField from "../FormField/FormField";
-import EmailInput from "../Input/EmailInput";
-import PasswordInput from "../Input/PasswordInput";
+import FormField from "../../components/FormField/FormField";
+import EmailInput from "../../components/Input/EmailInput";
+import PasswordInput from "../../components/Input/PasswordInput";
 import styles from "./Login.module.css";
 
 export default function Login() {
