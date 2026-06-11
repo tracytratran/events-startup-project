@@ -14,6 +14,7 @@ import Homepage from "./pages/Homepage/Homepage.jsx";
 import Layout from "./pages/Layout/Layout.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { OrderProvider } from "./context/OrderContext.jsx";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Homepage /> },
+      { path: "*", element: <NotFound /> },
       { path: "events", element: <EventList /> },
       { path: "events/:id", element: <EventDetail /> },
       { path: "my-cart", element: <Cart /> },
