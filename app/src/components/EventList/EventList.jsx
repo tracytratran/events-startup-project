@@ -23,7 +23,7 @@ export default function EventList() {
     handleCategoryChange,
     handleSortChange,
   } = useEventFilters(events);
-  const eventsPerPage = useEventsPerPage();
+  const eventsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastEvent = Math.min(
     currentPage * eventsPerPage,
