@@ -2,10 +2,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useSnackbar } from "../../context/SnackbarContext";
 import styles from "./EventCard.module.css";
 
 export default function EventCard({ event }) {
   const { addItemToCart } = useCart();
+  const { showSnackbar } = useSnackbar();
   const dateStr = event.date;
   const formattedDate = new Date(dateStr)
     .toLocaleDateString("en-US", {
@@ -36,6 +38,7 @@ export default function EventCard({ event }) {
             onClick={(e) => {
               e.preventDefault();
               addItemToCart(event.name, event.price);
+              showSnackbar("Event ticket added to your cart!");
             }}
             disabled={event.ticketsAvailable === 0}
             className={styles.addToCartBtn}

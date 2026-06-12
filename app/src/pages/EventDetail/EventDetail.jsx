@@ -6,6 +6,7 @@ import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
+import { useSnackbar } from "../../context/SnackbarContext.jsx";
 import useEventById from "../../hooks/useEventById.jsx";
 import styles from "./EventDetail.module.css";
 
@@ -13,6 +14,7 @@ export default function EventDetail() {
   const { id } = useParams();
   const { event: eventToDisplay, loading, error } = useEventById(id);
   const { addItemToCart } = useCart();
+  const { showSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [isShowed, setIsShowed] = useState(false);
 
@@ -45,9 +47,10 @@ export default function EventDetail() {
       <div className={styles.header}>
         <h1 className={styles.title}>{eventToDisplay.name}</h1>
         <button
-          onClick={() =>
-            addItemToCart(eventToDisplay.name, eventToDisplay.price)
-          }
+          onClick={() => {
+            addItemToCart(eventToDisplay.name, eventToDisplay.price);
+            showSnackbar("Event ticket added to your cart!");
+          }}
           disabled={eventToDisplay.ticketsAvailable === 0}
           className={styles.buyBtn}
         >
