@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useAuth } from "./AuthContext";
+import { createContext, useContext } from "react";
 import api from "../api.js";
+import { NetworkError, UndefinedServerError } from "../error-system.js";
+import { useAuth } from "./AuthContext";
 
 const OrderContext = createContext(null);
 
@@ -8,38 +9,50 @@ export function OrderProvider({ children }) {
   const { user, token } = useAuth();
 
   async function createOrder(events) {
-    const response = await fetch(api("orders"), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({ userId: user.id, events }),
-    });
+    let response;
 
-    if (!response.ok) {
-      throw new Error("Failed to create order!");
+    try {
+      response = await fetch(api("orders"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ userId: user.id, events }),
+      });
+    } catch {
+      throw new NetworkError();
     }
 
-    const order = await response.json();
-    return order;
+    if (!response.ok) {
+      const message = await response.text().catch(() => "");
+      throw new UndefinedServerError(message || undefined);
+    }
+
+    return response.json();
   }
 
   async function getOrders() {
-    const response = await fetch(api("orders"), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    });
+    let response;
 
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+    try {
+      response = await fetch(api("orders"), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+    } catch {
+      throw new NetworkError();
     }
 
-    const orders = await response.json();
-    return orders;
+    if (!response.ok) {
+      const message = await response.text().catch(() => "");
+      throw new UndefinedServerError(message || undefined);
+    }
+
+    return response.json();
   }
 
   return (
