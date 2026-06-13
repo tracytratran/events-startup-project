@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import FormField from "../../components/FormField/FormField";
 import EmailInput from "../../components/Input/EmailInput";
 import PasswordInput from "../../components/Input/PasswordInput";
+import { useAuth } from "../../context/AuthContext";
 import styles from "./Register.module.css";
 
 export default function Register() {

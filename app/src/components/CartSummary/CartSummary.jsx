@@ -1,4 +1,3 @@
-import { useCart } from "../../context/CartContext";
 import styles from "./CartSummary.module.css";
 
 export default function CartSummary({ eventTickets }) {

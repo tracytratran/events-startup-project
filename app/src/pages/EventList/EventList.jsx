@@ -1,7 +1,4 @@
 import { useState } from "react";
-import useEventFilters from "../../hooks/useEventFilters.jsx";
-import useEvents from "../../hooks/useEvents.jsx";
-import useEventsPerPage from "../../hooks/useEventsPerPage.jsx";
 import EventCard from "../../components/EventCard/EventCard.jsx";
 import FilterOption from "../../components/FilterOption/FilterOption.jsx";
 import Pagination from "../../components/Pagination/Pagination.jsx";
@@ -9,6 +6,8 @@ import SearchBar from "../../components/Search/SearchBar.jsx";
 import SearchSection from "../../components/Search/SearchSection.jsx";
 import SideBar from "../../components/SideBar/SideBar.jsx";
 import SortBar from "../../components/SortBar/SortBar.jsx";
+import useEventFilters from "../../hooks/useEventFilters.jsx";
+import useEvents from "../../hooks/useEvents.jsx";
 import styles from "./EventList.module.css";
 
 export default function EventList() {
@@ -25,7 +24,7 @@ export default function EventList() {
     handleCategoryChange,
     handleSortChange,
   } = useEventFilters(events);
-  const eventsPerPage = useEventsPerPage();
+  const eventsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastEvent = Math.min(
     currentPage * eventsPerPage,

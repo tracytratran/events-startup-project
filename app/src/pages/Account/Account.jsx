@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import OrderItem from "../../components/Order/OrderItem";
 import { useAuth } from "../../context/AuthContext";
 import { useOrder } from "../../context/OrderContext";
-import OrderItem from "../../components/Order/OrderItem";
 import styles from "./Account.module.css";
 
 export default function Account() {

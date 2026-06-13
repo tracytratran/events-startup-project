@@ -1,8 +1,8 @@
 import styles from "./Homepage.module.css";
 
-function HomePage() {
+export default function Homepage() {
   return (
-    <div className={styles.homePage}>
+    <div className={styles.homepage}>
       <h1 className={styles.title}>Welcome to the HackYourFuture Event!</h1>
       <img
         src="/images/hyf-team34-aar.jpeg"
@@ -12,5 +12,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

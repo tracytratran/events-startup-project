@@ -3,8 +3,8 @@
 }
 
 .eventCard {
-  height: 7rem;
   max-width: 90vw;
+  height: 7rem;
   display: flex;
   flex-direction: row;
   background: #fff;

@@ -2,13 +2,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CartItem from "../../components/CartItem/CartItem";
+import CartSummary from "../../components/CartSummary/CartSummary";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useOrder } from "../../context/OrderContext";
-import CartItem from "../../components/CartItem/CartItem";
-import CartSummary from "../../components/CartSummary/CartSummary";
-import styles from "./Cart.module.css";
 import { useSnackbar } from "../../context/SnackbarContext";
+import styles from "./Cart.module.css";
 
 export default function Cart() {
   const { user } = useAuth();
