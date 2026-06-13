@@ -45,6 +45,7 @@
 @media (min-width: 600px) {
   .filterBar {
     padding-bottom: 1rem;
+    width: 80%;
     border-bottom: 1px solid #1e1e2e;
   }
 
