@@ -9,7 +9,6 @@ import SearchSection from "../Search/SearchSection.jsx";
 import SideBar from "../SideBar/SideBar.jsx";
 import SortBar from "../SortBar/SortBar.jsx";
 import styles from "./EventList.module.css";
-import useEventsPerPage from "../../hooks/useEventsPerPage.jsx";
 
 export default function EventList() {
   const { events, loading, error } = useEvents();
