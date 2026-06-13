@@ -19,6 +19,8 @@ export default function EventList() {
     setSearch,
     priceFilters,
     handlePriceChange,
+    cityFilters,
+    handleCityChange,
     categoryFilters,
     handleCategoryChange,
     handleSortChange,
@@ -62,6 +64,14 @@ export default function EventList() {
             filterOptions={priceFilters}
             onChange={(e) => {
               handlePriceChange(e);
+              setCurrentPage(1);
+            }}
+          />
+          <FilterOption
+            filterTitle="City"
+            filterOptions={cityFilters}
+            onChange={(e) => {
+              handleCityChange(e);
               setCurrentPage(1);
             }}
           />
