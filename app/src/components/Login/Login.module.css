@@ -8,6 +8,7 @@
 .loginForm {
   margin: 5rem auto auto;
   padding: 2.5rem;
+  padding: 2.5rem;
   max-width: 25rem;
   width: 100%;
   display: flex;
@@ -27,8 +28,8 @@
 
 .subtitle {
   margin-top: -0.75rem;
-  text-align: center;
   font-size: 1rem;
+  text-align: center;
 }
 
 .divider {

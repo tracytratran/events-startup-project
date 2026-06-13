@@ -35,6 +35,29 @@
   color: #1e2235;
 }
 
+.addToCartBtn {
+  padding: 0.5rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: #f4d63f;
+  border: none;
+  border-radius: 0.5rem;
+  color: #1e2235;
+  cursor: pointer;
+}
+
+.addToCartBtn:not(:disabled):hover {
+  background-color: #e0b010;
+}
+
+.addToCartBtn:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
 .eventInfo {
   padding: 1.25rem;
   display: grid;
@@ -43,11 +66,11 @@
 }
 
 .date {
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.5;
   color: #3f3dbf;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.2;
   word-break: break-word;
 }
 
