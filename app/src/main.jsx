@@ -6,6 +6,7 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import Account from "./components/Account/Account.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import EventDetail from "./components/EventDetail/EventDetail.jsx";
@@ -17,10 +18,7 @@ import Register from "./components/Register/Register.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import "./main.css";
-import Account from "./components/Account/Account.jsx";
 
-// Cart model: cart items are stored in localStorage via CartContext (no backend needed).
-// At checkout, the cart is POSTed to POST /api/orders and then cleared.
 const ProtectedRoutes = () => {
   const accessToken = localStorage.getItem("token");
 
@@ -35,11 +33,11 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "events", element: <EventList /> },
       { path: "events/:id", element: <EventDetail /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
       { path: "my-cart", element: <Cart /> },
     ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
   {
     element: <ProtectedRoutes />,
     children: [

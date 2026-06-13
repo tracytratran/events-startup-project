@@ -14,19 +14,14 @@ export default function EventDetail() {
   const { addItemToCart } = useCart();
   const [isShowed, setIsShowed] = useState(false);
 
-  if (!eventToDisplay) return null;
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+
+  if (error) return <p className={styles.error}>Error: {error}</p>;
+
+  if (!eventToDisplay) return <p className={styles.error}>Event not found!</p>;
 
   const price =
     eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
-  const ticketsAvailable =
-    eventToDisplay.ticketsAvailable === 0
-      ? "Sold out"
-      : `${eventToDisplay.ticketsAvailable} ticket${eventToDisplay.ticketsAvailable > 1 && "s"} left`;
-
-  const price =
-    eventToDisplay.price === 0 ? "Free" : `${eventToDisplay.price} kr.`;
-
   const ticketsAvailable =
     eventToDisplay.ticketsAvailable === 0
       ? "Sold out"
@@ -36,7 +31,7 @@ export default function EventDetail() {
     <div className={styles.container}>
       <img
         className={styles.image}
-        src="../public/images/mock-event-img.jpg"
+        src="/images/mock-event-cover.jpg"
         alt={eventToDisplay.name}
       />
 

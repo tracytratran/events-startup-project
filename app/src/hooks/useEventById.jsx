@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 
 export default function useEventById(eventId) {
-  const [event, setEvent] = useState();
+  const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,7 +12,9 @@ export default function useEventById(eventId) {
         setLoading(true);
         setError(null);
         const response = await fetch(api("events/" + eventId));
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} ${response.statusText}`);
+        }
 
         const data = await response.json();
 

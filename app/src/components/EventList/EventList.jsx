@@ -22,14 +22,22 @@ export default function EventList() {
     handleCategoryChange,
     handleSortChange,
   } = useEventFilters(events);
+  const eventsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 4;
-  const indexOfLastEvent = currentPage * eventsPerPage;
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const indexOfLastEvent = Math.min(
+    currentPage * eventsPerPage,
+    displayedEvents.length,
+  );
+  const indexOfFirstEvent = (currentPage - 1) * eventsPerPage;
   const currentEvents = displayedEvents.slice(
     indexOfFirstEvent,
     indexOfLastEvent,
   );
+
+  function handleOnSearch(value = "") {
+    setSearch(value);
+    setCurrentPage(1);
+  }
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -40,14 +48,8 @@ export default function EventList() {
       <SearchSection>
         <SearchBar
           search={search}
-          onSearch={(e) => {
-            setSearch(e.target.value);
-            setCurrentPage(1);
-          }}
-          onClearSearch={() => {
-            setSearch("");
-            setCurrentPage(1);
-          }}
+          onSearch={(e) => handleOnSearch(e.target.value)}
+          onClearSearch={() => handleOnSearch()}
         />
       </SearchSection>
 

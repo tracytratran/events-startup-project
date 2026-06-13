@@ -25,6 +25,7 @@
   background: transparent;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
+  font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
   color: #2d3270;
