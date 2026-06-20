@@ -1,6 +1,5 @@
 .filterBar {
-  padding-bottom: 0;
-  border-bottom: none;
+  display: contents;
 }
 
 .title {
@@ -46,6 +45,7 @@
   .filterBar {
     padding-bottom: 1rem;
     width: 80%;
+    display: block;
     border-bottom: 1px solid #1e1e2e;
   }
 
