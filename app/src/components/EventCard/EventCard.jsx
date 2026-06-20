@@ -1,10 +1,13 @@
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useSnackbar } from "../../context/SnackbarContext";
 import styles from "./EventCard.module.css";
 
 export default function EventCard({ event }) {
   const { addItemToCart } = useCart();
+  const { showSnackbar } = useSnackbar();
   const dateStr = event.date;
   const formattedDate = new Date(dateStr)
     .toLocaleDateString("en-US", {
@@ -21,22 +24,24 @@ export default function EventCard({ event }) {
       ? "Sold out"
       : `${event.ticketsAvailable} ticket${event.ticketsAvailable > 1 && "s"} left`;
 
+  function handleOnAdd(e) {
+    e.preventDefault();
+    addItemToCart(event.name, event.price);
+    showSnackbar("Event ticket added to your cart!");
+  }
+
   return (
     <Link to={`/events/${event.id}`} className={styles.link}>
-      <li className={styles.card}>
+      <li className={styles.eventCard}>
         <div className={styles.imageWrapper}>
           <img
             src={event.image}
             alt={`Photo of ${event.name}`}
             className={styles.image}
           />
-
           <span className={styles.category}>{event.category}</span>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              addItemToCart(event.name, event.price);
-            }}
+            onClick={(e) => handleOnAdd(e)}
             disabled={event.ticketsAvailable === 0}
             className={styles.addToCartBtn}
           >
@@ -46,7 +51,6 @@ export default function EventCard({ event }) {
 
         <div className={styles.eventInfo}>
           <span className={styles.date}>{formattedDate}</span>
-
           <div>
             <h2 className={styles.title}>{event.name}</h2>
             <p className={styles.location}>
@@ -58,6 +62,14 @@ export default function EventCard({ event }) {
             </p>
           </div>
         </div>
+
+        <button
+          onClick={(e) => handleOnAdd(e)}
+          disabled={event.ticketsAvailable === 0}
+          className={styles.addBtn}
+        >
+          <AddCircleIcon />
+        </button>
       </li>
     </Link>
   );

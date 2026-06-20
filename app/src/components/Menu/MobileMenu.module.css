@@ -1,0 +1,22 @@
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cartIcon,
+.menuIcon {
+  color: #fff;
+}
+
+.menuItem {
+  font: inherit !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+@media (min-width: 600px) {
+  .mobileActions {
+    display: none;
+  }
+}

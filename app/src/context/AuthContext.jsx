@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import api from "../api.js";
+import {
+  InvalidCredentials,
+  NetworkError,
+  UndefinedServerError,
+} from "../error-system.js";
 
 const AuthContext = createContext(null);
 
@@ -14,14 +19,31 @@ export function AuthProvider({ children }) {
   });
 
   async function login(email, password) {
-    const response = await fetch(api("login"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    let response;
+
+    try {
+      response = await fetch(api("login"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+    } catch {
+      throw new NetworkError();
+    }
 
     if (!response.ok) {
-      throw new Error("Invalid email or password!");
+      const message = await response.text().catch(() => "");
+
+      if (message.includes("Cannot find user")) {
+        throw new InvalidCredentials(
+          "No account found with this email. Please register first!",
+        );
+      }
+      if (message.includes("Incorrect password")) {
+        throw new InvalidCredentials("Incorrect email or password.");
+      }
+
+      throw new UndefinedServerError(message || undefined);
     }
 
     const { accessToken, user } = await response.json();
@@ -29,14 +51,28 @@ export function AuthProvider({ children }) {
   }
 
   async function register(email, password) {
-    const response = await fetch(api("register"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    let response;
+
+    try {
+      response = await fetch(api("register"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+    } catch {
+      throw new NetworkError();
+    }
 
     if (!response.ok) {
-      throw new Error("Registration failed. Please try again!");
+      const message = await response.text().catch(() => "");
+
+      if (message.includes("Email already exists")) {
+        throw new InvalidCredentials(
+          "This account already exists. Please log in instead.",
+        );
+      }
+
+      throw new UndefinedServerError(message || undefined);
     }
 
     const { accessToken, user } = await response.json();

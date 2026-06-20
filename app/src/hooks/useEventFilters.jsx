@@ -5,10 +5,15 @@ export default function useEventFilters(events) {
   const [search, setSearch] = useState("");
   const [checkedPrice, setCheckedPrice] = useState([]);
   const [checkedCategory, setCheckedCategory] = useState([]);
+  const [checkedCity, setCheckedCity] = useState([]);
   const handlePriceChange = (e) => handleFilterChange(e, setCheckedPrice);
   const handleCategoryChange = (e) => handleFilterChange(e, setCheckedCategory);
+  const handleCityChange = (e) => handleFilterChange(e, setCheckedCity);
   const priceFilters = ["Free", "Paid"];
-  const categoryFilters = [...new Set(events.map((event) => event.category))];
+  const categories = events.map((event) => event.category);
+  const categoryFilters = [...new Set(categories.sort())];
+  const cities = events.map((event) => event.city);
+  const cityFilters = [...new Set(cities.sort())];
   const displayedEvents = sortEvents(filterEvents());
 
   function sortEvents(filteredEvents) {
@@ -47,11 +52,13 @@ export default function useEventFilters(events) {
       const matchCategory =
         checkedCategory.length === 0 ||
         checkedCategory.includes(event.category);
+      const matchCity =
+        checkedCity.length === 0 || checkedCity.includes(event.city);
       const matchSearch =
         search === "" ||
         event.name.toLowerCase().includes(search.toLowerCase());
 
-      return matchSearch && matchPrice && matchCategory;
+      return matchSearch && matchPrice && matchCategory && matchCity;
     });
   }
 
@@ -71,6 +78,8 @@ export default function useEventFilters(events) {
     handlePriceChange,
     categoryFilters,
     handleCategoryChange,
+    cityFilters,
+    handleCityChange,
     handleSortChange,
   };
 }

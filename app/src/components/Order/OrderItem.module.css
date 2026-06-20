@@ -1,0 +1,36 @@
+.orderItem {
+  background: #ffffff;
+  border: 1px solid #c8cde8;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.header {
+  padding: 0.625rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eef2f8;
+  border-bottom: 1px solid #c8cde8;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3d4a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status {
+  padding: 0.2rem 0.625rem;
+  border-radius: 0.5rem;
+  background: #bbf0d6;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #166534;
+}
+
+.body {
+  padding: 1rem 1.25rem;
+}

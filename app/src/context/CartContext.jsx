@@ -41,6 +41,10 @@ export function CartProvider({ children }) {
     );
   }
 
+  function clearCart() {
+    setEventTickets([]);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -49,6 +53,7 @@ export function CartProvider({ children }) {
         addItemToCart,
         removeItemFromCart,
         updateItemQuantity,
+        clearCart,
       }}
     >
       {children}
