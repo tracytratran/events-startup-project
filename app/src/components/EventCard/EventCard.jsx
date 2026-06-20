@@ -24,6 +24,12 @@ export default function EventCard({ event }) {
       ? "Sold out"
       : `${event.ticketsAvailable} ticket${event.ticketsAvailable > 1 && "s"} left`;
 
+  function handleOnAdd(e) {
+    e.preventDefault();
+    addItemToCart(event.name, event.price);
+    showSnackbar("Event ticket added to your cart!");
+  }
+
   return (
     <Link to={`/events/${event.id}`} className={styles.link}>
       <li className={styles.eventCard}>
@@ -35,11 +41,7 @@ export default function EventCard({ event }) {
           />
           <span className={styles.category}>{event.category}</span>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              addItemToCart(event.name, event.price);
-              showSnackbar("Event ticket added to your cart!");
-            }}
+            onClick={(e) => handleOnAdd(e)}
             disabled={event.ticketsAvailable === 0}
             className={styles.addToCartBtn}
           >
@@ -62,10 +64,7 @@ export default function EventCard({ event }) {
         </div>
 
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            addItemToCart(event.name, event.price);
-          }}
+          onClick={(e) => handleOnAdd(e)}
           disabled={event.ticketsAvailable === 0}
           className={styles.addBtn}
         >
